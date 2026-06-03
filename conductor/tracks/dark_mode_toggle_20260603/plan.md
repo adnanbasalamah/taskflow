@@ -11,7 +11,7 @@
 - [x] Task: Create localStorage theme utility helper [1df1fb0]
     - [x] Add `getTheme()` and `setTheme()` helper functions in the Alpine component
     - [x] Default to `'light'` if no preference saved
-- [ ] Task: Conductor - User Manual Verification 'Phase 1: Tailwind Dark Mode Configuration' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 1: Tailwind Dark Mode Configuration' (Protocol in workflow.md) [a82dd3d]
 
 ## Phase 2: Dark Mode Toggle UI
 
@@ -24,7 +24,7 @@
     - [x] Add `theme` property to existing Alpine.js component
     - [x] Initialize `theme` from localStorage on mount
     - [x] Sync Alpine state ↔ DOM class ↔ localStorage on changes
-- [ ] Task: Conductor - User Manual Verification 'Phase 2: Dark Mode Toggle UI' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 2: Dark Mode Toggle UI' (Protocol in workflow.md) [a82dd3d]
 
 ## Phase 3: Dark Mode Styling Implementation
 
@@ -40,4 +40,4 @@
     - [x] Update toolbar, input fields, checklist items with `dark:` variants
     - [x] Adjust buttons, menus, modals for dark mode
 - [x] Task: Ensure Login & Register pages remain light-only (no changes) [1df1fb0]
-- [ ] Task: Conductor - User Manual Verification 'Phase 3: Dark Mode Styling Implementation' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 3: Dark Mode Styling Implementation' (Protocol in workflow.md) [a82dd3d]
