@@ -1,4 +1,4 @@
-<div class="sticky top-0 bg-white border-b border-gray-100 z-10">
+<div class="sticky top-0 bg-white border-b border-gray-100 z-10" x-data="taskApp()">
   <div class="flex items-center justify-between px-4 py-3 max-w-lg mx-auto">
     <div class="flex items-center gap-2">
     <button @click="goBack" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 p-1">

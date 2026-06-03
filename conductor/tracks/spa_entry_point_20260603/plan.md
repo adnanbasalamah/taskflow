@@ -1,18 +1,18 @@
 # Plan: Single Entry Point SPA
 
-## Phase 1: Entry Point & Routing Infrastructure
+## Phase 1: Entry Point & Routing Infrastructure [checkpoint: 9cf8930]
 
-- [x] Task: Buat `index.php` sebagai single entry point
+- [x] Task: Buat `index.php` sebagai single entry point (9cf8930)
     - [x] Session check: redirect guest ke login, authenticated user ke dashboard
     - [x] Routing berdasarkan `?page=` parameter
     - [x] Logout route: `?page=logout` → destroy session → redirect `/`
     - [x] 404 handler untuk route tidak dikenal
-- [x] Task: Buat layout bersama `views/layout.php`
+- [x] Task: Buat layout bersama `views/layout.php` (9cf8930)
     - [x] Head section: charset, viewport, title, Tailwind CDN, Alpine.js CDN, Roboto font
     - [x] Manifest, sw.js registration
     - [x] Dark mode CSS (dari dashboard.html)
     - [x] Body wrapper yang menerima konten view dinamis
-- [x] Task: Update `.htaccess` atau Apache config
+- [x] Task: Update `.htaccess` atau Apache config (9cf8930)
     - [x] Set `DirectoryIndex index.php`
 - [ ] Task: Conductor - User Manual Verification 'Phase 1' (Protocol in workflow.md)
 

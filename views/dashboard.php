@@ -1,4 +1,4 @@
-<div class="sticky top-0 bg-white border-b border-gray-100 z-10">
+<div class="sticky top-0 bg-white border-b border-gray-100 z-10" x-data="dashboardApp()">
   <div class="flex items-center gap-2 px-4 py-2 max-w-lg md:max-w-5xl mx-auto">
     <h1 class="text-lg font-bold text-gray-800 dark:text-gray-200 shrink-0">TaskFlow</h1>
     <div class="flex-1 flex justify-center">
