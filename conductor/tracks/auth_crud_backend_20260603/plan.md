@@ -23,14 +23,14 @@
     - [x] Create api/login.php (POST — verify credentials, start session)
     - [x] Create api/logout.php (POST — destroy session)
     - [x] Create api/session.php (GET — check current session)
-- [ ] Task: Create login page
-    - [ ] Create login.html with Tailwind + Alpine.js
-    - [ ] Wire form to api/login.php via fetch
-    - [ ] Show validation errors inline
-- [ ] Task: Create register page
-    - [ ] Create register.html with Tailwind + Alpine.js
-    - [ ] Wire form to api/register.php via fetch
-    - [ ] Auto-redirect to login after success
+- [x] Task: Create login page [8a19d27]
+    - [x] Create login.html with Tailwind + Alpine.js
+    - [x] Wire form to api/login.php via fetch
+    - [x] Show validation errors inline
+- [x] Task: Create register page [8a19d27]
+    - [x] Create register.html with Tailwind + Alpine.js
+    - [x] Wire form to api/register.php via fetch
+    - [x] Auto-redirect to login after success
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: Authentication' (Protocol in workflow.md)
 
 ## Phase 3: Task CRUD
