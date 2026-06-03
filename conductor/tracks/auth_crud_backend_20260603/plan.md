@@ -16,7 +16,7 @@
     - [x] Create helpers/validate.php (input validation)
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Database & Configuration' (Protocol in workflow.md)
 
-## Phase 2: Authentication
+## Phase 2: Authentication [checkpoint: 88edee3]
 
 - [x] Task: Create auth API endpoints [a295b1a]
     - [x] Create api/register.php (POST — username + password, bcrypt)
@@ -31,7 +31,7 @@
     - [x] Create register.html with Tailwind + Alpine.js
     - [x] Wire form to api/register.php via fetch
     - [x] Auto-redirect to login after success
-- [~] Task: Conductor - User Manual Verification 'Phase 2: Authentication' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 2: Authentication' (Protocol in workflow.md)
 
 ## Phase 3: Task CRUD
 
