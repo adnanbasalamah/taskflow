@@ -471,6 +471,9 @@ if ('serviceWorker' in navigator) {
           }
           const idx = this._nextIdx++;
           this.checklistItems.push({ text: 'Item baru', checked: false, editing: true, _idx: idx });
+          const marker = document.createElement('checklist-pos');
+          marker.setAttribute('data-ci', idx);
+          editor.appendChild(marker);
         },
         removeChecklist(idx) {
           this.checklistItems.splice(idx, 1);
