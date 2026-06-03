@@ -12,8 +12,3 @@ This file tracks all major tracks for the project. Each track has its own detail
 - [x] **Track: Search / Cari Task**
   *Link: [./tracks/search_task_20260603/](./tracks/search_task_20260603/)*
 
----
-
-- [x] **Track: Swap Toolbar & State Buttons Position**
-  *Link: [./tracks/swap_toolbar_state_buttons_20260603/](./tracks/swap_toolbar_state_buttons_20260603/)*
-
