@@ -12,4 +12,9 @@ This file tracks all major tracks for the project. Each track has its own detail
 - [x] **Track: Search / Cari Task**
   *Link: [./tracks/search_task_20260603/](./tracks/search_task_20260603/)*
 
+---
+
+- [ ] **Track: Fix Web Contact API Silent Failure on Android**
+  *Link: [./tracks/fix_contact_api_silent_failure_20260604/](./tracks/fix_contact_api_silent_failure_20260604/)*
+
 
