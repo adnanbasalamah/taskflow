@@ -33,7 +33,7 @@
     - [x] Auto-redirect to login after success
 - [x] Task: Conductor - User Manual Verification 'Phase 2: Authentication' (Protocol in workflow.md)
 
-## Phase 3: Task CRUD
+## Phase 3: Task CRUD [checkpoint: a46a354]
 
 - [x] Task: Create task API endpoints [84b5175]
     - [x] Create api/tasks/create.php (POST)
@@ -50,9 +50,9 @@
     - [x] Inline "Buat catatan baru..." card on dashboard
     - [x] Expand to full editor on click → task.html
     - [x] Save via POST API on blur/submit
-- [ ] Task: Conductor - User Manual Verification 'Phase 3: Task CRUD' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 3: Task CRUD' (Protocol in workflow.md)
 
-## Phase 4: Dashboard & Filtering
+## Phase 4: Dashboard & Filtering [checkpoint: a46a354]
 
 - [x] Task: Create dashboard page [d4d560f]
     - [x] Create dashboard.html with Alpine.js
@@ -72,4 +72,4 @@
     - [x] Web Contact API integration button
     - [x] "Kirim via WhatsApp" button on delegate cards
     - [x] WhatsApp link generation (wa.me)
-- [ ] Task: Conductor - User Manual Verification 'Phase 4: Dashboard & Filtering' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 4: Dashboard & Filtering' (Protocol in workflow.md)
