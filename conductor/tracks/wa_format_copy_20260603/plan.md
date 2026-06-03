@@ -31,3 +31,7 @@
     - [x] Test checklist with inline formatting inside
     - [x] Test content with no formatting (plain text unaffected)
 - [x] Task: Conductor - User Manual Verification 'Phase 2: Testing & Edge Cases' (Protocol in workflow.md) [ec61aab]
+
+## Phase: Review Fixes
+
+- [x] Task: Add spacing around `_italic_` markers for WhatsApp compatibility [f276dd1]
