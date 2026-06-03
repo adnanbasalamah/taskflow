@@ -400,14 +400,24 @@ function taskApp() {
     },
     importFromPhone() {
       if ('contacts' in navigator && 'select' in navigator.contacts) {
-        navigator.contacts.select(['name', 'tel'], { multiple: false })
+        const contactPromise = navigator.contacts.select(['name', 'tel'], { multiple: false });
+        const timeoutPromise = new Promise((_, reject) => {
+          setTimeout(() => reject(new Error('timeout')), 5000);
+        });
+        Promise.race([contactPromise, timeoutPromise])
           .then(contacts => {
             if (contacts.length > 0) {
               this.newContact.name = contacts[0].name[0];
               this.newContact.phone = contacts[0].tel[0];
             }
           })
-          .catch(() => {});
+          .catch(err => {
+            if (err && err.message === 'timeout') {
+              alert('Waktu habis. Kontak HP tidak dapat diakses. Silakan isi manual.');
+            } else {
+              alert('Gagal membuka kontak HP. Silakan isi manual.');
+            }
+          });
       } else {
         alert('Web Contact API tidak didukung di browser ini. Silakan isi manual.');
       }
