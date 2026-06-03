@@ -20,14 +20,14 @@
     - [x] Replace `stripChecklist()` call with `htmlToWhatsApp()` in the copy flow
     - [x] Ensure title is still prepended as plain text
     - [x] Verify clipboard output for both `navigator.clipboard` and fallback methods
-- [ ] Task: Conductor - User Manual Verification 'Phase 1: Create HTML to WhatsApp Converter' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 1: Create HTML to WhatsApp Converter' (Protocol in workflow.md) [ec61aab]
 
 ## Phase 2: Testing & Edge Cases
 
-- [ ] Task: Verify formatting edge cases
-    - [ ] Test empty content
-    - [ ] Test mixed formatting (bold + italic + strikethrough)
-    - [ ] Test nested tags (`<b><i>bold+italic</i></b>`)
-    - [ ] Test checklist with inline formatting inside
-    - [ ] Test content with no formatting (plain text unaffected)
-- [ ] Task: Conductor - User Manual Verification 'Phase 2: Testing & Edge Cases' (Protocol in workflow.md)
+- [x] Task: Verify formatting edge cases
+    - [x] Test empty content
+    - [x] Test mixed formatting (bold + italic + strikethrough)
+    - [x] Test nested tags (`<b><i>bold+italic</i></b>`)
+    - [x] Test checklist with inline formatting inside
+    - [x] Test content with no formatting (plain text unaffected)
+- [x] Task: Conductor - User Manual Verification 'Phase 2: Testing & Edge Cases' (Protocol in workflow.md) [ec61aab]

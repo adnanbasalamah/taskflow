@@ -14,6 +14,6 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-- [ ] **Track: WhatsApp-Style Formatting on Copy**
+- [x] **Track: WhatsApp-Style Formatting on Copy**
   *Link: [./tracks/wa_format_copy_20260603/](./tracks/wa_format_copy_20260603/)*
 
