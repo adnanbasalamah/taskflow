@@ -173,8 +173,14 @@
           this.title = task.title || '';
           this.state = task.state;
           this.selectedColor = this.stateColors[task.state]?.card || 'bg-amber-50';
-          document.getElementById('contentEditor').innerHTML = task.content || '';
+          document.getElementById('contentEditor').innerHTML = this.stripChecklist(task.content || '');
           this.parseContent(task.content || '');
+        },
+        stripChecklist(html) {
+          const temp = document.createElement('div');
+          temp.innerHTML = html;
+          temp.querySelectorAll('li[data-checklist]').forEach(li => li.remove());
+          return temp.innerHTML;
         },
         parseContent(html) {
           const temp = document.createElement('div');
@@ -265,8 +271,8 @@
           const content = this.buildContent();
           const url = this.taskId ? 'api/tasks/update.php' : 'api/tasks/create.php';
           const body = this.taskId
-            ? { id: parseInt(this.taskId), content, state: this.state }
-            : { content, state: this.state };
+            ? { id: parseInt(this.taskId), title: this.title, content, state: this.state }
+            : { title: this.title, content, state: this.state };
 
           fetch(url, {
             method: this.taskId ? 'PUT' : 'POST',

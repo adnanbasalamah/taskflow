@@ -32,6 +32,13 @@ $updates = [];
 $params = [];
 $types = '';
 
+if (isset($input['title'])) {
+    $title = sanitize_string($input['title']);
+    $updates[] = "title = ?";
+    $params[] = $title;
+    $types .= 's';
+}
+
 if (isset($input['content'])) {
     $content = sanitize_string($input['content']);
     $updates[] = "content = ?";

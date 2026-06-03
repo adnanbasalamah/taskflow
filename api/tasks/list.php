@@ -16,7 +16,7 @@ $state_filter = isset($_GET['state']) && in_array($_GET['state'], ['todo', 'doin
     ? $_GET['state']
     : null;
 
-$sql = "SELECT id, content, state, created_at, updated_at FROM tasks WHERE user_id = ?";
+$sql = "SELECT id, title, content, state, created_at, updated_at FROM tasks WHERE user_id = ?";
 $params = [$user_id];
 $types = 'i';
 

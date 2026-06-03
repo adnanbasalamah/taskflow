@@ -24,15 +24,16 @@ if ($error) {
 }
 
 $user_id = current_user_id();
+$title = isset($input['title']) ? sanitize_string($input['title']) : '';
 $content = sanitize_string($input['content']);
 $state = isset($input['state']) && in_array($input['state'], ['todo', 'doing', 'delegate', 'done'])
     ? $input['state']
     : 'todo';
 
-$stmt = $db->prepare("INSERT INTO tasks (user_id, content, state) VALUES (?, ?, ?)");
-$stmt->bind_param('iss', $user_id, $content, $state);
+$stmt = $db->prepare("INSERT INTO tasks (user_id, title, content, state) VALUES (?, ?, ?, ?)");
+$stmt->bind_param('isss', $user_id, $title, $content, $state);
 $stmt->execute();
 
 $task_id = $stmt->insert_id;
 
-success_response(['id' => $task_id, 'user_id' => $user_id, 'content' => $content, 'state' => $state, 'created_at' => date('c'), 'updated_at' => date('c')], 'Task created', 201);
+success_response(['id' => $task_id, 'user_id' => $user_id, 'title' => $title, 'content' => $content, 'state' => $state, 'created_at' => date('c'), 'updated_at' => date('c')], 'Task created', 201);

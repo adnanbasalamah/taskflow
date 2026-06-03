@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS tasks (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     user_id INT UNSIGNED NOT NULL,
+    title VARCHAR(255) DEFAULT NULL,
     content TEXT NOT NULL,
     state ENUM('todo','doing','delegate','done') NOT NULL DEFAULT 'todo',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
