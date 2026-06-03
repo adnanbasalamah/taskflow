@@ -35,12 +35,12 @@
 
 ## Phase 3: Task CRUD
 
-- [ ] Task: Create task API endpoints
-    - [ ] Create api/tasks/create.php (POST)
-    - [ ] Create api/tasks/list.php (GET)
-    - [ ] Create api/tasks/update.php (PUT)
-    - [ ] Create api/tasks/delete.php (DELETE)
-    - [ ] Add input validation and SQL injection protection
+- [x] Task: Create task API endpoints [84b5175]
+    - [x] Create api/tasks/create.php (POST)
+    - [x] Create api/tasks/list.php (GET)
+    - [x] Create api/tasks/update.php (PUT)
+    - [x] Create api/tasks/delete.php (DELETE)
+    - [x] Add input validation and SQL injection protection
 - [ ] Task: Create task detail/edit page
     - [ ] Create task.html with Alpine.js data binding
     - [ ] Implement title + content editing
