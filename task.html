@@ -76,10 +76,56 @@
           </template>
         </div>
 
+        <div class="mb-5">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-medium text-gray-400">KONTAK TERLIBAT</span>
+            <button @click="showContactModal = true" class="text-xs text-indigo-500 hover:text-indigo-600 font-medium">+ Tambah</button>
+          </div>
+          <template x-if="contacts.length === 0">
+            <p class="text-xs text-gray-400">Belum ada kontak</p>
+          </template>
+          <template x-for="(c, idx) in contacts" :key="c.id">
+            <div class="flex items-center gap-3 bg-white/60 rounded-xl p-3 border border-gray-100 mb-2">
+              <div class="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 text-xs font-semibold" x-text="c.name[0]"></div>
+              <div class="flex-1">
+                <p class="text-sm font-medium text-gray-700" x-text="c.name"></p>
+                <p class="text-xs text-gray-400" x-text="c.phone"></p>
+              </div>
+              <button @click="removeContact(idx)" class="text-xs text-red-400 hover:text-red-600">Hapus</button>
+            </div>
+          </template>
+        </div>
+
         <button @click="saveTask"
           class="w-full py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-xl hover:from-indigo-600 hover:to-purple-700 transition shadow-md shadow-indigo-200/50 text-sm">
           Simpan Task
         </button>
+      </div>
+    </div>
+  </div>
+
+  <div x-show="showContactModal" class="fixed inset-0 bg-black/30 flex items-end justify-center z-20"
+       x-transition:enter="transition ease-out duration-200"
+       x-transition:enter-start="translate-y-full"
+       x-transition:enter-end="translate-y-0">
+    <div class="bg-white rounded-t-2xl w-full max-w-lg p-6">
+      <h3 class="font-semibold text-gray-800 mb-4">Tambah Kontak</h3>
+      <div class="space-y-3">
+        <input type="text" x-model="newContact.name" placeholder="Nama kontak"
+          class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-indigo-400 outline-none text-sm bg-gray-50/50">
+        <input type="text" x-model="newContact.phone" placeholder="Nomor HP (contoh: 628123456789)"
+          class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-indigo-400 outline-none text-sm bg-gray-50/50">
+        <button @click="addContact" class="w-full py-3 bg-indigo-500 text-white font-medium rounded-xl hover:bg-indigo-600 transition text-sm">
+          Simpan Kontak
+        </button>
+        <div class="relative my-4">
+          <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-gray-200"></div></div>
+          <div class="relative flex justify-center"><span class="bg-white px-3 text-xs text-gray-400">atau</span></div>
+        </div>
+        <button @click="importFromPhone" class="w-full py-2.5 border border-gray-200 text-gray-600 font-medium rounded-xl hover:bg-gray-50 transition text-sm flex items-center justify-center gap-2">
+          Buku Kontak HP
+        </button>
+        <button @click="showContactModal = false" class="w-full py-2 text-xs text-gray-400 hover:text-gray-600">Batal</button>
       </div>
     </div>
   </div>
@@ -93,6 +139,9 @@
         state: 'todo',
         selectedColor: 'bg-amber-50',
         checklistItems: [],
+        contacts: [],
+        newContact: { name: '', phone: '' },
+        showContactModal: false,
         states: [
           { label: 'Todo', value: 'todo' },
           { label: 'Doing', value: 'doing' },
@@ -112,7 +161,10 @@
               .then(data => {
                 if (data.data) {
                   const task = data.data.find(t => String(t.id) === this.taskId);
-                  if (task) this.loadTask(task);
+                  if (task) {
+                    this.loadTask(task);
+                    this.loadContacts();
+                  }
                 }
               });
           }
@@ -135,6 +187,55 @@
               editing: false
             });
           });
+        },
+        loadContacts() {
+          if (!this.taskId) return;
+          fetch('api/tasks/contacts.php?task_id=' + this.taskId)
+            .then(res => res.json())
+            .then(data => { if (data.data) this.contacts = data.data; });
+        },
+        addContact() {
+          if (!this.newContact.name || !this.newContact.phone) return;
+          fetch('api/tasks/contacts.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ task_id: parseInt(this.taskId), name: this.newContact.name, phone: this.newContact.phone })
+          })
+          .then(res => res.json())
+          .then(data => {
+            if (!data.error) {
+              this.contacts.push({ id: data.data.id, name: this.newContact.name, phone: this.newContact.phone });
+              this.newContact = { name: '', phone: '' };
+              this.showContactModal = false;
+            }
+          });
+        },
+        removeContact(idx) {
+          const c = this.contacts[idx];
+          if (!c.id) return;
+          fetch('api/tasks/contacts.php', {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: c.id })
+          })
+          .then(res => res.json())
+          .then(data => {
+            if (!data.error) this.contacts.splice(idx, 1);
+          });
+        },
+        importFromPhone() {
+          if ('contacts' in navigator && 'select' in navigator.contacts) {
+            navigator.contacts.select(['name', 'tel'], { multiple: false })
+              .then(contacts => {
+                if (contacts.length > 0) {
+                  this.newContact.name = contacts[0].name[0];
+                  this.newContact.phone = contacts[0].tel[0];
+                }
+              })
+              .catch(() => {});
+          } else {
+            alert('Web Contact API tidak didukung di browser ini. Silakan isi manual.');
+          }
         },
         execCmd(cmd) {
           document.execCommand(cmd, false, null);
