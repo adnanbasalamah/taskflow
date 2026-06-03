@@ -18,11 +18,11 @@
 
 ## Phase 2: Authentication
 
-- [ ] Task: Create auth API endpoints
-    - [ ] Create api/register.php (POST — username + password, bcrypt)
-    - [ ] Create api/login.php (POST — verify credentials, start session)
-    - [ ] Create api/logout.php (POST — destroy session)
-    - [ ] Create api/session.php (GET — check current session)
+- [x] Task: Create auth API endpoints [a295b1a]
+    - [x] Create api/register.php (POST — username + password, bcrypt)
+    - [x] Create api/login.php (POST — verify credentials, start session)
+    - [x] Create api/logout.php (POST — destroy session)
+    - [x] Create api/session.php (GET — check current session)
 - [ ] Task: Create login page
     - [ ] Create login.html with Tailwind + Alpine.js
     - [ ] Wire form to api/login.php via fetch
