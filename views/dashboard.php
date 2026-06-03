@@ -1,4 +1,5 @@
-<div class="sticky top-0 bg-white border-b border-gray-100 z-10" x-data="dashboardApp()">
+<div x-data="dashboardApp()">
+<div class="sticky top-0 bg-white border-b border-gray-100 z-10">
   <div class="flex items-center gap-2 px-4 py-2 max-w-lg md:max-w-5xl mx-auto">
     <h1 class="text-lg font-bold text-gray-800 dark:text-gray-200 shrink-0">TaskFlow</h1>
     <div class="flex-1 flex justify-center">
@@ -85,6 +86,7 @@
   class="fab fixed bottom-6 right-6 w-14 h-14 bg-blue-500 hover:bg-blue-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all flex items-center justify-center z-30 active:scale-95">
   <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
 </button>
+</div>
 
 <script>
 function dashboardApp() {
