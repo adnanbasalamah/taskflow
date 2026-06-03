@@ -4,7 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TaskFlow — Dashboard</title>
+  <script>
+    tailwind.config = { darkMode: 'class' }
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    (function() {
+      var theme = localStorage.getItem('theme') || 'light';
+      if (theme === 'dark') document.documentElement.classList.add('dark');
+    })();
+  </script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#6366f1">
@@ -25,22 +34,41 @@
     .filter-pill:not(.active):hover { background: #e5e7eb; }
     .checked-item { text-decoration: line-through; color: #9ca3af; }
     .card-content { display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.43; }
+    .dark body, .dark .bg-gray-50 { background-color: #202124 !important; }
+    .dark .sticky.top-0 { background-color: #202124 !important; border-bottom-color: #3c4043 !important; }
+    .dark .task-card { background: #333 !important; border-color: #444 !important; }
+    .dark .task-card h3 { color: #fff !important; }
+    .dark .card-content { color: #e0e0e0 !important; }
+    .dark .filter-pill:not(.active) { background: #3c4043; color: #e0e0e0; }
+    .dark .filter-pill:not(.active):hover { background: #4a4d52; }
+    .dark input.bg-gray-100 { background: #3c4043; color: #e0e0e0; }
+    .dark input.bg-gray-100:focus { background: #3c4043; }
+    .dark .text-gray-400 { color: #9aa0a6 !important; }
+    .dark .text-gray-800 { color: #e8eaed !important; }
   </style>
 </head>
-<body class="bg-gray-50 min-h-screen" x-data="dashboardApp()">
-  <div class="sticky top-0 bg-white border-b border-gray-100 z-10">
+<body class="bg-gray-50 min-h-screen dark:bg-[#202124]" x-data="dashboardApp()">
+  <div class="sticky top-0 bg-white dark:bg-[#202124] border-b border-gray-100 dark:border-gray-700 z-10">
     <div class="flex items-center gap-2 px-4 py-2 max-w-lg md:max-w-5xl mx-auto">
-      <h1 class="text-lg font-bold text-gray-800 shrink-0">TaskFlow</h1>
+      <h1 class="text-lg font-bold text-gray-800 dark:text-gray-200 shrink-0">TaskFlow</h1>
       <div class="flex-1 flex justify-center">
         <div class="relative w-full max-w-md">
           <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
           <input type="text" placeholder="Cari task..." x-model="searchQuery" @input="onSearchInput"
-            class="w-full pl-9 pr-8 py-1.5 bg-gray-100 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:bg-white transition">
-          <button x-show="searchQuery.length > 0" @click="clearSearch" class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+            class="w-full pl-9 pr-8 py-1.5 bg-gray-100 dark:bg-gray-700 rounded-lg text-sm text-gray-700 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:bg-white dark:focus:bg-gray-700 transition">
+          <button x-show="searchQuery.length > 0" @click="clearSearch" class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
           </button>
         </div>
       </div>
+      <button @click="toggleTheme" class="w-8 h-8 rounded-lg flex items-center justify-center text-gray-500 hover:bg-black/5 transition shrink-0" title="Toggle tema">
+        <svg x-show="theme === 'light'" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+        </svg>
+        <svg x-show="theme === 'dark'" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+        </svg>
+      </button>
       <div @click="logout()" class="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-semibold text-sm cursor-pointer hover:bg-indigo-200 transition shrink-0" x-text="initial" title="Logout"></div>
     </div>
   </div>
@@ -120,6 +148,7 @@ if ('serviceWorker' in navigator) {
         tasks: [],
         filter: 'semua',
         searchQuery: '',
+        theme: localStorage.getItem('theme') || 'light',
         filters: [
           { label: 'Semua', value: 'semua' },
           { label: 'Todo', value: 'todo' },
@@ -147,6 +176,11 @@ if ('serviceWorker' in navigator) {
         clearSearch() {
           this.searchQuery = '';
           this.fetchTasks();
+        },
+        toggleTheme() {
+          this.theme = this.theme === 'light' ? 'dark' : 'light';
+          localStorage.setItem('theme', this.theme);
+          document.documentElement.classList.toggle('dark', this.theme === 'dark');
         },
         checkAuth() {
           fetch('api/session.php')

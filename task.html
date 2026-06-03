@@ -4,7 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TaskFlow — Task</title>
+  <script>
+    tailwind.config = { darkMode: 'class' }
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    (function() {
+      var theme = localStorage.getItem('theme') || 'light';
+      if (theme === 'dark') document.documentElement.classList.add('dark');
+    })();
+  </script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#6366f1">
@@ -17,12 +26,26 @@
     body { font-family: 'Roboto', Arial, sans-serif; }
     .checked-item { text-decoration: line-through; color: #9ca3af; }
     [contenteditable]:focus { outline: none; }
+    .dark body, .dark .bg-gray-50 { background-color: #202124 !important; }
+    .dark .sticky.top-0 { background-color: #202124 !important; border-bottom-color: #3c4043 !important; }
+    .dark .text-gray-400 { color: #9aa0a6 !important; }
+    .dark .text-gray-700 { color: #e8eaed !important; }
+    .dark .text-gray-600 { color: #e0e0e0 !important; }
+    .dark .text-gray-800 { color: #e8eaed !important; }
+    .dark .text-gray-900 { color: #fff !important; }
+    .dark .border-gray-100 { border-color: #3c4043 !important; }
+    .dark .border-gray-200 { border-color: #3c4043 !important; }
+    .dark .bg-white { background-color: #202124 !important; }
+    .dark input.bg-transparent { color: #e8eaed; }
+    .dark [contenteditable] { color: #e0e0e0; }
+    .dark .rounded-\[8px\].border { background: #333 !important; }
   </style>
 </head>
-<body class="bg-gray-50 min-h-screen" x-data="taskApp()">
-  <div class="sticky top-0 bg-white border-b border-gray-100 z-10">
+<body class="bg-gray-50 min-h-screen dark:bg-[#202124]" x-data="taskApp()">
+  <div class="sticky top-0 bg-white dark:bg-[#202124] border-b border-gray-100 dark:border-gray-700 z-10">
     <div class="flex items-center justify-between px-4 py-3 max-w-lg mx-auto">
-      <button @click="goBack" class="text-gray-400 hover:text-gray-600 p-1">
+      <div class="flex items-center gap-2">
+      <button @click="goBack" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 p-1">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
         </svg>
@@ -34,13 +57,21 @@
         </svg>
       </button>
     </div>
+    <button @click="toggleTheme" class="w-8 h-8 rounded-lg flex items-center justify-center text-gray-500 hover:bg-black/5 dark:hover:bg-white/10 transition shrink-0" title="Toggle tema">
+      <svg x-show="theme === 'light'" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+      </svg>
+      <svg x-show="theme === 'dark'" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+      </svg>
+    </button>
   </div>
 
   <div class="max-w-lg mx-auto px-4 pb-8 mt-4">
     <div class="rounded-[8px] border border-gray-100 shadow-sm overflow-hidden" :class="selectedColor">
       <div class="p-5">
         <input type="text" x-model="title"
-          class="w-full text-[22px] font-normal bg-transparent border-none outline-none text-[#202124] placeholder-gray-400 mb-4"
+          class="w-full text-[22px] font-normal bg-transparent border-none outline-none text-[#202124] dark:text-gray-100 placeholder-gray-400 mb-4"
           placeholder="Judul task...">
 
         <div class="flex gap-2 flex-wrap mb-4">
@@ -54,7 +85,7 @@
 
         <div class="space-y-2 mb-5">
           <div contenteditable="true" id="contentEditor"
-            class="text-sm text-[#3c4043] min-h-[80px] leading-[1.43]"
+            class="text-sm text-[#3c4043] dark:text-gray-300 min-h-[80px] leading-[1.43]"
             @input="updateContent"></div>
 
           <template x-for="(item, idx) in checklistItems" :key="idx">
@@ -73,7 +104,7 @@
           </template>
         </div>
 
-        <div class="flex items-center gap-1 mb-4 pb-3 border-b border-gray-200/50">
+        <div class="flex items-center gap-1 mb-4 pb-3 border-b border-gray-200/50 dark:border-gray-600/50">
           <button @click="execCmd('bold')" class="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold text-gray-600 hover:bg-black/5">B</button>
           <button @click="execCmd('italic')" class="w-8 h-8 rounded-lg flex items-center justify-center text-sm italic text-gray-600 hover:bg-black/5">I</button>
           <button @click="execCmd('underline')" class="w-8 h-8 rounded-lg flex items-center justify-center text-sm underline text-gray-600 hover:bg-black/5">U</button>
@@ -88,7 +119,7 @@
         <!-- Labels -->
         <div class="mb-4" x-show="taskId">
           <div class="flex items-center justify-between mb-2">
-            <span class="text-xs font-medium text-gray-400">LABEL</span>
+            <span class="text-xs font-medium text-gray-400 dark:text-gray-500">LABEL</span>
             <button @click="showLabelModal = true" class="text-xs text-indigo-500 hover:text-indigo-600 font-medium">+ Atur</button>
           </div>
           <div class="flex gap-1.5 flex-wrap" x-show="taskLabels.length > 0">
@@ -101,18 +132,18 @@
 
         <div class="mb-5">
           <div class="flex items-center justify-between mb-2">
-            <span class="text-xs font-medium text-gray-400">KONTAK TERLIBAT</span>
+            <span class="text-xs font-medium text-gray-400 dark:text-gray-500">KONTAK TERLIBAT</span>
             <button @click="showContactModal = true" class="text-xs text-indigo-500 hover:text-indigo-600 font-medium">+ Tambah</button>
           </div>
           <template x-if="contacts.length === 0">
             <p class="text-xs text-gray-400">Belum ada kontak</p>
           </template>
           <template x-for="(c, idx) in contacts" :key="c.id">
-            <div class="flex items-center gap-3 bg-white/60 rounded-xl p-3 border border-gray-100 mb-2">
+              <div class="flex items-center gap-3 bg-white/60 dark:bg-gray-700/60 rounded-xl p-3 border border-gray-100 dark:border-gray-600 mb-2">
               <div class="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 text-xs font-semibold" x-text="c.name[0]"></div>
               <div class="flex-1">
-                <p class="text-sm font-medium text-gray-700" x-text="c.name"></p>
-                <p class="text-xs text-gray-400" x-text="c.phone"></p>
+                <p class="text-sm font-medium text-gray-700 dark:text-gray-200" x-text="c.name"></p>
+                <p class="text-xs text-gray-400 dark:text-gray-400" x-text="c.phone"></p>
               </div>
               <button @click="removeContact(idx)" class="text-xs text-red-400 hover:text-red-600">Hapus</button>
             </div>
@@ -127,12 +158,12 @@
               </svg>
             </button>
             <div x-show="openMenu"
-              class="absolute bottom-full right-0 mb-1 bg-white rounded-xl shadow-lg border border-gray-100 py-1 w-44 z-30 text-sm">
-              <button @click="showLabelModal = true; openMenu = false" class="w-full px-4 py-2.5 text-left text-gray-700 hover:bg-gray-50 flex items-center gap-2.5 text-xs">
+              class="absolute bottom-full right-0 mb-1 bg-white dark:bg-[#333] rounded-xl shadow-lg border border-gray-100 dark:border-gray-600 py-1 w-44 z-30 text-sm">
+              <button @click="showLabelModal = true; openMenu = false" class="w-full px-4 py-2.5 text-left text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 flex items-center gap-2.5 text-xs">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path></svg>
                 Label
               </button>
-              <button @click="copyCurrentTask" class="w-full px-4 py-2.5 text-left text-gray-700 hover:bg-gray-50 flex items-center gap-2.5 text-xs">
+              <button @click="copyCurrentTask" class="w-full px-4 py-2.5 text-left text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 flex items-center gap-2.5 text-xs">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
                 Salin
               </button>
@@ -158,10 +189,10 @@
        x-transition:enter-start="translate-y-full"
        x-transition:enter-end="translate-y-0"
        @click.self="showLabelModal = false">
-    <div class="bg-white rounded-t-2xl w-full max-w-lg p-6 max-h-[70vh] overflow-y-auto">
+    <div class="bg-white dark:bg-[#333] rounded-t-2xl w-full max-w-lg p-6 max-h-[70vh] overflow-y-auto">
       <div class="flex items-center justify-between mb-4">
-        <h3 class="font-semibold text-gray-800">Atur Label</h3>
-        <button @click="showLabelModal = false" class="text-gray-400 hover:text-gray-600">
+        <h3 class="font-semibold text-gray-800 dark:text-gray-100">Atur Label</h3>
+        <button @click="showLabelModal = false" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
       </div>
@@ -177,13 +208,13 @@
         </template>
       </div>
       <div class="relative my-3">
-        <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-gray-200"></div></div>
-        <div class="relative flex justify-center"><span class="bg-white px-3 text-xs text-gray-400">Buat label baru</span></div>
+        <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-gray-200 dark:border-gray-600"></div></div>
+        <div class="relative flex justify-center"><span class="bg-white dark:bg-[#333] px-3 text-xs text-gray-400">Buat label baru</span></div>
       </div>
       <div class="flex gap-2">
         <input type="text" x-model="newLabelName" @keydown.enter="createLabel" placeholder="Nama label..."
-          class="flex-1 px-3 py-2 rounded-lg border border-gray-200 text-sm outline-none focus:border-indigo-400">
-        <select x-model="newLabelColor" class="px-2 py-2 rounded-lg border border-gray-200 text-sm outline-none">
+          class="flex-1 px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 text-sm outline-none focus:border-indigo-400">
+        <select x-model="newLabelColor" class="px-2 py-2 rounded-lg border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 text-sm outline-none">
           <option value="#6366f1">Indigo</option>
           <option value="#ef4444">Merah</option>
           <option value="#f97316">Jingga</option>
@@ -202,21 +233,21 @@
        x-transition:enter="transition ease-out duration-200"
        x-transition:enter-start="translate-y-full"
        x-transition:enter-end="translate-y-0">
-    <div class="bg-white rounded-t-2xl w-full max-w-lg p-6">
-      <h3 class="font-semibold text-gray-800 mb-4">Tambah Kontak</h3>
+    <div class="bg-white dark:bg-[#333] rounded-t-2xl w-full max-w-lg p-6">
+      <h3 class="font-semibold text-gray-800 dark:text-gray-100 mb-4">Tambah Kontak</h3>
       <div class="space-y-3">
         <input type="text" x-model="newContact.name" placeholder="Nama kontak"
-          class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-indigo-400 outline-none text-sm bg-gray-50/50">
+          class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:border-indigo-400 outline-none text-sm bg-gray-50/50 dark:bg-gray-700/50">
         <input type="text" x-model="newContact.phone" placeholder="Nomor HP (contoh: 628123456789)"
-          class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-indigo-400 outline-none text-sm bg-gray-50/50">
+          class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:border-indigo-400 outline-none text-sm bg-gray-50/50 dark:bg-gray-700/50">
         <button @click="addContact" class="w-full py-3 bg-indigo-500 text-white font-medium rounded-xl hover:bg-indigo-600 transition text-sm">
           Simpan Kontak
         </button>
         <div class="relative my-4">
-          <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-gray-200"></div></div>
-          <div class="relative flex justify-center"><span class="bg-white px-3 text-xs text-gray-400">atau</span></div>
+          <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-gray-200 dark:border-gray-600"></div></div>
+          <div class="relative flex justify-center"><span class="bg-white dark:bg-[#333] px-3 text-xs text-gray-400">atau</span></div>
         </div>
-        <button @click="importFromPhone" class="w-full py-2.5 border border-gray-200 text-gray-600 font-medium rounded-xl hover:bg-gray-50 transition text-sm flex items-center justify-center gap-2">
+        <button @click="importFromPhone" class="w-full py-2.5 border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 font-medium rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition text-sm flex items-center justify-center gap-2">
           Buku Kontak HP
         </button>
         <button @click="showContactModal = false" class="w-full py-2 text-xs text-gray-400 hover:text-gray-600">Batal</button>
@@ -252,6 +283,7 @@ if ('serviceWorker' in navigator) {
         allLabels: [],
         showLabelModal: false,
         openMenu: false,
+        theme: localStorage.getItem('theme') || 'light',
         toast: { show: false, message: '', type: 'success' },
         newLabelName: '',
         newLabelColor: '#6366f1',
@@ -535,6 +567,11 @@ if ('serviceWorker' in navigator) {
         },
         goBack() {
           window.location.href = 'dashboard.html';
+        },
+        toggleTheme() {
+          this.theme = this.theme === 'light' ? 'dark' : 'light';
+          localStorage.setItem('theme', this.theme);
+          document.documentElement.classList.toggle('dark', this.theme === 'dark');
         }
       }
     }

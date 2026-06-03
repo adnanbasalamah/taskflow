@@ -14,6 +14,6 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-- [ ] **Track: Add Dark Mode Toggle**
+- [~] **Track: Add Dark Mode Toggle**
   *Link: [./tracks/dark_mode_toggle_20260603/](./tracks/dark_mode_toggle_20260603/)*
 
