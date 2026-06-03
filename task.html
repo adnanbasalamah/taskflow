@@ -559,7 +559,11 @@ if ('serviceWorker' in navigator) {
                 const inner = convertNode(child);
                 switch (tag) {
                   case 'b': case 'strong': result += `*${inner}*`; break;
-                  case 'i': case 'em': result += `_${inner}_`; break;
+                  case 'i': case 'em': {
+                    const pad = result.length > 0 && !result.endsWith(' ') && !result.endsWith('\n') ? ' ' : '';
+                    result += `${pad}_${inner}_ `;
+                    break;
+                  }
                   case 's': case 'del': case 'strike': result += `~${inner}~`; break;
                   case 'u': result += inner; break;
                   case 'br': result += '\n'; break;
