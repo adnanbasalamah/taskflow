@@ -14,7 +14,7 @@
     - [x] Body wrapper yang menerima konten view dinamis
 - [x] Task: Update `.htaccess` atau Apache config (9cf8930)
     - [x] Set `DirectoryIndex index.php`
-- [ ] Task: Conductor - User Manual Verification 'Phase 1' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 1' (Protocol in workflow.md)
 
 ## Phase 2: Migrate Views to PHP
 
@@ -30,16 +30,16 @@
     - [x] Full task editor (dari task.html)
     - [x] Rich text formatting, checklist, labels, contacts, state buttons
     - [x] Pastikan all XHR/fetch URLs masih benar
-- [ ] Task: Conductor - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 2' (Protocol in workflow.md)
 
-## Phase 3: Cleanup & Final Verification
+## Phase 3: Cleanup & Final Verification [checkpoint: 7e042cf]
 
-- [ ] Task: Hapus file `.html` lama
-    - [ ] Hapus `login.html`, `register.html`, `dashboard.html`, `task.html`
-- [ ] Task: Verifikasi semua route dan fungsionalitas
-    - [ ] Akses `/` → login page (guest)
-    - [ ] Login → dashboard
-    - [ ] Klik task → `?page=task&id=N`
-    - [ ] Logout → kembali ke login
-    - [ ] Dark mode, formatting, checklist, labels, contacts, WA
-- [ ] Task: Conductor - User Manual Verification 'Phase 3' (Protocol in workflow.md)
+- [x] Task: Hapus file `.html` lama (7e042cf)
+    - [x] Hapus `login.html`, `register.html`, `dashboard.html`, `task.html`
+- [x] Task: Verifikasi semua route dan fungsionalitas (7e042cf)
+    - [x] Akses `/` → login page (guest)
+    - [x] Login → dashboard
+    - [x] Klik task → `?page=task&id=N`
+    - [x] Logout → kembali ke login
+    - [x] Dark mode, formatting, checklist, labels, contacts, WA
+- [x] Task: Conductor - User Manual Verification 'Phase 3' (Protocol in workflow.md)
