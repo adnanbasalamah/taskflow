@@ -59,7 +59,6 @@
       <div class="flex items-center gap-1 mb-4 pb-3 border-b border-gray-200/50 dark:border-gray-600/50">
         <button @click="execCmd('bold')" class="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold text-gray-600 hover:bg-black/5">B</button>
         <button @click="execCmd('italic')" class="w-8 h-8 rounded-lg flex items-center justify-center text-sm italic text-gray-600 hover:bg-black/5">I</button>
-        <button @click="execCmd('underline')" class="w-8 h-8 rounded-lg flex items-center justify-center text-sm underline text-gray-600 hover:bg-black/5">U</button>
         <span class="w-px h-5 bg-gray-200 mx-1"></span>
         <button @click="addChecklistItem" class="w-8 h-8 rounded-lg flex items-center justify-center text-xs text-gray-600 hover:bg-black/5" title="Checklist">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -325,6 +324,20 @@ function taskApp() {
       this.selectedColor = this.stateColors[task.state]?.card || 'bg-amber-50';
       document.getElementById('contentEditor').innerHTML = this.stripChecklist(task.content || '');
       this.parseContent(task.content || '');
+      this.insertChecklistMarkers();
+    },
+    insertChecklistMarkers() {
+      const editor = document.getElementById('contentEditor');
+      this.checklistItems.forEach(item => {
+        if (item._idx !== undefined) {
+          const marker = document.createElement('checklist-pos');
+          marker.setAttribute('data-ci', item._idx);
+          editor.appendChild(marker);
+          if (item._idx >= this._nextIdx) {
+            this._nextIdx = item._idx + 1;
+          }
+        }
+      });
     },
     stripChecklist(html) {
       const temp = document.createElement('div');
