@@ -29,6 +29,7 @@ Aplikasi Single Page App (SPA) manajemen task bernama TaskFlow, dengan tampilan 
 - Checklist item dengan checkbox
 - Checklist dicentang → strikethrough
 - Konversi teks biasa ke checklist via select + button
+- Copy output terformat WhatsApp (*bold*, _italic_, ~strikethrough~, - [x] checklist)
 
 ### 4. Delegate & WhatsApp
 - Tambah kontak via Web Contact API (nama + no HP)
@@ -37,7 +38,7 @@ Aplikasi Single Page App (SPA) manajemen task bernama TaskFlow, dengan tampilan 
 
 ### 5. Labels & 3-Dot Menu
 - Label warna pada task (toggle via editor)
-- 3-dot menu: atur label, salin isi, hapus task
+- 3-dot menu: atur label, salin isi (dengan format WhatsApp-style), hapus task
 
 ### 6. Toast Notifications
 - Notifikasi untuk simpan, salin, label toggle
