@@ -17,4 +17,9 @@ This file tracks all major tracks for the project. Each track has its own detail
 - [x] **Track: Fix Web Contact API Silent Failure on Android**
   *Link: [./tracks/fix_contact_api_silent_failure_20260604/](./tracks/fix_contact_api_silent_failure_20260604/)*
 
+---
+
+- [ ] **Track: Remove Web Contact API (Contact Picker)**
+  *Link: [./tracks/remove_contact_picker_20260604/](./tracks/remove_contact_picker_20260604/)*
+
 
