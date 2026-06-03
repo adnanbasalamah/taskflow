@@ -12,8 +12,4 @@ This file tracks all major tracks for the project. Each track has its own detail
 - [x] **Track: Search / Cari Task**
   *Link: [./tracks/search_task_20260603/](./tracks/search_task_20260603/)*
 
----
-
-- [x] **Track: Single entry point SPA - index.php routing**
-  *Link: [./tracks/spa_entry_point_20260603/](./tracks/spa_entry_point_20260603/)*
 
