@@ -41,3 +41,7 @@
     - [x] Adjust buttons, menus, modals for dark mode
 - [x] Task: Ensure Login & Register pages remain light-only (no changes) [1df1fb0]
 - [x] Task: Conductor - User Manual Verification 'Phase 3: Dark Mode Styling Implementation' (Protocol in workflow.md) [a82dd3d]
+
+## Phase: Review Fixes
+
+- [x] Task: Apply review suggestions [af0eddb]
