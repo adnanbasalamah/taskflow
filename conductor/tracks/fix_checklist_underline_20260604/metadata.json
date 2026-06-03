@@ -1,8 +1,0 @@
-{
-  "track_id": "fix_checklist_underline_20260604",
-  "type": "bug",
-  "status": "new",
-  "created_at": "2026-06-04T00:00:00Z",
-  "updated_at": "2026-06-04T00:00:00Z",
-  "description": "Fix checklist items disappearing on state change and remove underline button from task editor"
-}
