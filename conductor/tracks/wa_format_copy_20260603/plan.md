@@ -2,24 +2,24 @@
 
 ## Phase 1: Create HTML to WhatsApp Converter
 
-- [ ] Task: Create `htmlToWhatsApp()` conversion function
-    - [ ] Parse HTML string into DOM
-    - [ ] Walk child nodes recursively
-    - [ ] Convert `<b>`/`<strong>` → `*text*`
-    - [ ] Convert `<i>`/`<em>` → `_text_`
-    - [ ] Convert `<s>`/`<del>`/`<strike>` → `~text~`
-    - [ ] Convert `<u>` → plain text (strip tag, keep content)
-    - [ ] Handle nested formatting (e.g., `<b><i>text</i></b>` → `*_text_*`)
-    - [ ] Convert `<br>` → newline
-- [ ] Task: Handle checklist & list conversion
-    - [ ] Convert `<li data-checklist="true" data-checked="true">` → `- [x] item text`
-    - [ ] Convert `<li data-checklist="true" data-checked="false">` → `- [ ] item text`
-    - [ ] Convert `<ol>`/`<ul>` items → each `<li>` as `- item text`
-    - [ ] Ensure checklist items appear after inline content (not mixed)
-- [ ] Task: Integrate converter into `copyCurrentTask()`
-    - [ ] Replace `stripChecklist()` call with `htmlToWhatsApp()` in the copy flow
-    - [ ] Ensure title is still prepended as plain text
-    - [ ] Verify clipboard output for both `navigator.clipboard` and fallback methods
+- [x] Task: Create `htmlToWhatsApp()` conversion function [7404d95]
+    - [x] Parse HTML string into DOM
+    - [x] Walk child nodes recursively
+    - [x] Convert `<b>`/`<strong>` → `*text*`
+    - [x] Convert `<i>`/`<em>` → `_text_`
+    - [x] Convert `<s>`/`<del>`/`<strike>` → `~text~`
+    - [x] Convert `<u>` → plain text (strip tag, keep content)
+    - [x] Handle nested formatting (e.g., `<b><i>text</i></b>` → `*_text_*`)
+    - [x] Convert `<br>` → newline
+- [x] Task: Handle checklist & list conversion [7404d95]
+    - [x] Convert `<li data-checklist="true" data-checked="true">` → `- [x] item text`
+    - [x] Convert `<li data-checklist="true" data-checked="false">` → `- [ ] item text`
+    - [x] Convert `<ol>`/`<ul>` items → each `<li>` as `- item text`
+    - [x] Ensure checklist items appear after inline content (not mixed)
+- [x] Task: Integrate converter into `copyCurrentTask()` [7404d95]
+    - [x] Replace `stripChecklist()` call with `htmlToWhatsApp()` in the copy flow
+    - [x] Ensure title is still prepended as plain text
+    - [x] Verify clipboard output for both `navigator.clipboard` and fallback methods
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Create HTML to WhatsApp Converter' (Protocol in workflow.md)
 
 ## Phase 2: Testing & Edge Cases
