@@ -1,0 +1,8 @@
+{
+  "track_id": "wa_format_copy_20260603",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-06-03T00:00:00Z",
+  "updated_at": "2026-06-03T00:00:00Z",
+  "description": "Convert task content to WhatsApp-style markdown when copying via Salin button"
+}
