@@ -1,6 +1,6 @@
 # Initial Concept
 
-Aplikasi Single Page App (SPA) manajemen task bernama TaskFlow, dengan tampilan mirip Google Keep (font Roboto, grid layout, card-style). Menggunakan Tailwind CSS + Alpine.js di frontend dan PHP biasa sebagai backend dengan database MySQL. Fitur utama: login/logout username+password, CRUD task dengan 4 state (Todo, Doing, Delegate, Done), text formatting (bold/italic/underline/checklist), delegate dengan kontak via Web Contact API + WhatsApp, label warna, dan toast notification.
+Aplikasi Single Page App (SPA) manajemen task bernama TaskFlow, dengan tampilan mirip Google Keep (font Roboto, grid layout, card-style). Menggunakan Tailwind CSS + Alpine.js di frontend dan PHP biasa sebagai backend dengan database MySQL. Fitur utama: login/logout username+password, CRUD task dengan 4 state (Todo, Doing, Delegate, Done), text formatting (bold/italic/checklist), delegate dengan kontak via Web Contact API + WhatsApp, label warna, dan toast notification.
 
 # Product Guide
 
@@ -25,7 +25,7 @@ Aplikasi Single Page App (SPA) manajemen task bernama TaskFlow, dengan tampilan 
 - Grid layout 2 kolom (desktop) / 1 kolom (mobile)
 
 ### 3. Rich Text Formatting
-- Bold, italic, underline untuk teks biasa
+- Bold, italic untuk teks biasa
 - Checklist item dengan checkbox
 - Checklist dicentang → strikethrough
 - Konversi teks biasa ke checklist via select + button
