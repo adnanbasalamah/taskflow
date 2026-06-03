@@ -14,6 +14,6 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-- [~] **Track: Swap Toolbar & State Buttons Position**
+- [x] **Track: Swap Toolbar & State Buttons Position**
   *Link: [./tracks/swap_toolbar_state_buttons_20260603/](./tracks/swap_toolbar_state_buttons_20260603/)*
 
