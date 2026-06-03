@@ -132,7 +132,8 @@ function dashboardApp() {
         .then(data => {
           if (!data.authenticated) window.location.href = '/';
           else if (data.user?.username) this.initial = data.user.username[0].toUpperCase();
-        });
+        })
+        .catch(() => {});
     },
     fetchTasks(q) {
       let url = 'api/tasks/list.php';
@@ -144,7 +145,8 @@ function dashboardApp() {
             this.tasks = data.data;
             this.tasks.forEach(t => this.loadContacts(t));
           }
-        });
+        })
+        .catch(() => {});
     },
     loadContacts(task) {
       fetch('api/tasks/contacts.php?task_id=' + task.id)

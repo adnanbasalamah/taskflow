@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../config/app.php';
 require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../helpers/response.php';
+require_once __DIR__ . '/../helpers/auth.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     error_response('Method not allowed', 405);

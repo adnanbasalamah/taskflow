@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?= htmlspecialchars($pageTitle) ?></title>
   <script>
+    window.tailwind = window.tailwind || {};
     tailwind.config = { darkMode: 'class' }
   </script>
   <script src="https://cdn.tailwindcss.com"></script>
