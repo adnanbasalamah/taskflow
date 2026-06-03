@@ -1,13 +1,11 @@
 <?php
 
-require_once __DIR__ . '/config/app.php';
-
 echo "TaskFlow Installer\n";
 echo "=================\n\n";
 
 $host = getenv('DB_HOST') ?: 'localhost';
 $user = getenv('DB_USER') ?: 'root';
-$pass = getenv('DB_PASS') ?: '';
+$pass = getenv('DB_PASS') ?: 'RSAtolong313';
 
 $conn = new mysqli($host, $user, $pass);
 

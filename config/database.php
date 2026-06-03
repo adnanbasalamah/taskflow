@@ -2,7 +2,7 @@
 
 $db_host = getenv('DB_HOST') ?: 'localhost';
 $db_user = getenv('DB_USER') ?: 'root';
-$db_pass = getenv('DB_PASS') ?: '';
+$db_pass = getenv('DB_PASS') ?: 'RSAtolong313';
 $db_name = getenv('DB_NAME') ?: 'taskflow_db';
 
 $db = new mysqli($db_host, $db_user, $db_pass, $db_name);
