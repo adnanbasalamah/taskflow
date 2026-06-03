@@ -46,30 +46,30 @@
     - [x] Implement title + content editing
     - [x] Implement toolbar (Bold, Italic, Underline)
     - [x] Implement checklist items (add, toggle, strikethrough)
-- [~] Task: Create task creation flow
-    - [ ] Inline "Buat catatan baru..." card on dashboard
-    - [ ] Expand to full editor on click
-    - [ ] Save via POST API on blur/submit
+- [x] Task: Create task creation flow [d4d560f]
+    - [x] Inline "Buat catatan baru..." card on dashboard
+    - [x] Expand to full editor on click → task.html
+    - [x] Save via POST API on blur/submit
 - [ ] Task: Conductor - User Manual Verification 'Phase 3: Task CRUD' (Protocol in workflow.md)
 
 ## Phase 4: Dashboard & Filtering
 
-- [ ] Task: Create dashboard page
-    - [ ] Create dashboard.html with Alpine.js
-    - [ ] Fetch all tasks via GET api/tasks/list.php
-    - [ ] Render task cards color-coded by state
-    - [ ] Implement filter pills (Semua, Todo, Doing, Delegate, Done)
-- [ ] Task: Implement state transition buttons
-    - [ ] Add Todo/Doing/Delegate/Done buttons in each card
-    - [ ] Wire to PUT api/tasks/update.php
-    - [ ] Re-render cards on state change
-- [ ] Task: Implement Done → Delete popup
-    - [ ] Show confirmation popup when state changes to Done
-    - [ ] "Ya, Hapus" → DELETE via API
-    - [ ] "Tidak" → keep task in Done state
-- [ ] Task: Add contact & WhatsApp delegate UI
-    - [ ] Add contact modal (nama + no HP)
-    - [ ] Web Contact API integration button
-    - [ ] "Kirim via WhatsApp" button on delegate cards
-    - [ ] WhatsApp link generation (wa.me)
+- [x] Task: Create dashboard page [d4d560f]
+    - [x] Create dashboard.html with Alpine.js
+    - [x] Fetch all tasks via GET api/tasks/list.php
+    - [x] Render task cards color-coded by state
+    - [x] Implement filter pills (Semua, Todo, Doing, Delegate, Done)
+- [x] Task: Implement state transition buttons [d4d560f]
+    - [x] Add Todo/Doing/Delegate/Done buttons in each card
+    - [x] Wire to PUT api/tasks/update.php
+    - [x] Re-render cards on state change
+- [x] Task: Implement Done → Delete popup [d4d560f]
+    - [x] Show confirmation popup when state changes to Done
+    - [x] "Ya, Hapus" → DELETE via API
+    - [x] "Tidak" → keep task in Done state
+- [x] Task: Add contact & WhatsApp delegate UI [d4d560f]
+    - [x] Add contact modal (nama + no HP)
+    - [x] Web Contact API integration button
+    - [x] "Kirim via WhatsApp" button on delegate cards
+    - [x] WhatsApp link generation (wa.me)
 - [ ] Task: Conductor - User Manual Verification 'Phase 4: Dashboard & Filtering' (Protocol in workflow.md)
