@@ -1,0 +1,8 @@
+{
+  "track_id": "spa_entry_point_20260603",
+  "type": "chore",
+  "status": "new",
+  "created_at": "2026-06-03T10:00:00Z",
+  "updated_at": "2026-06-03T10:00:00Z",
+  "description": "Single entry point SPA - index.php routing with full view integration"
+}
