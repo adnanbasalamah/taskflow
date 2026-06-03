@@ -19,7 +19,7 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-- [ ] **Track: Remove Web Contact API (Contact Picker)**
+- [x] **Track: Remove Web Contact API (Contact Picker)**
   *Link: [./tracks/remove_contact_picker_20260604/](./tracks/remove_contact_picker_20260604/)*
 
 
