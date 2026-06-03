@@ -24,7 +24,7 @@
       <h1 class="text-lg font-bold text-gray-800">TaskFlow</h1>
       <div class="flex items-center gap-3">
         <button @click="logout()" class="px-3 py-1.5 text-xs text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition font-medium">Logout</button>
-        <div class="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-semibold text-sm" x-text="initial"></div>
+        <div @click="logout()" class="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-semibold text-sm cursor-pointer hover:bg-indigo-200 transition" x-text="initial" title="Logout"></div>
       </div>
     </div>
   </div>
