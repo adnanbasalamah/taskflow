@@ -17,10 +17,10 @@ Aplikasi Single Page App (SPA) manajemen task bernama TaskFlow, dengan tampilan 
 
 ### 2. Task CRUD & State Management
 - Buat task baru via floating + button
-- Edit task di halaman editor khusus (task.html)
+- Edit task di halaman editor (`?page=task&id=N`)
 - Hapus task dengan konfirmasi
 - 4 state: Todo, Doing, Delegate, Done
-- Button state ada di task editor (task.html)
+- Button state ada di task editor (`?page=task&id=N`)
 - Filter dashboard berdasarkan state
 - Grid layout 2 kolom (desktop) / 1 kolom (mobile)
 
@@ -66,4 +66,4 @@ Aplikasi Single Page App (SPA) manajemen task bernama TaskFlow, dengan tampilan 
 - Frontend reactivity: Alpine.js (CDN)
 - Backend: PHP native tanpa framework
 - Database: MySQL dengan 5 tabel (users, tasks, task_contacts, labels, task_labels)
-- Arsitektur: SPA dengan PHP API backend
+- Arsitektur: SPA dengan PHP API backend, index.php sebagai single entry point
