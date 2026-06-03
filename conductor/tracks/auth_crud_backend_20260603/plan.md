@@ -7,9 +7,9 @@
     - [x] Create config/database.php with MySQL connection
     - [x] Create config/app.php with app constants
     - [x] Create .htaccess for URL routing
-- [ ] Task: Create database migration
-    - [ ] Copy database.sql to migration file
-    - [ ] Create install.php to run migration
+- [x] Task: Create database migration [d246c83]
+    - [x] Copy database.sql to migration file
+    - [x] Create install.php to run migration
 - [ ] Task: Create base helper functions
     - [ ] Create helpers/response.php (json_response, error_response)
     - [ ] Create helpers/auth.php (is_logged_in, require_login)
