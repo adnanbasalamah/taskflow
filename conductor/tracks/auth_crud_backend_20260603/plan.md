@@ -41,12 +41,12 @@
     - [x] Create api/tasks/update.php (PUT)
     - [x] Create api/tasks/delete.php (DELETE)
     - [x] Add input validation and SQL injection protection
-- [ ] Task: Create task detail/edit page
-    - [ ] Create task.html with Alpine.js data binding
-    - [ ] Implement title + content editing
-    - [ ] Implement toolbar (Bold, Italic, Underline)
-    - [ ] Implement checklist items (add, toggle, strikethrough)
-- [ ] Task: Create task creation flow
+- [x] Task: Create task detail/edit page [0484b08]
+    - [x] Create task.html with Alpine.js data binding
+    - [x] Implement title + content editing
+    - [x] Implement toolbar (Bold, Italic, Underline)
+    - [x] Implement checklist items (add, toggle, strikethrough)
+- [~] Task: Create task creation flow
     - [ ] Inline "Buat catatan baru..." card on dashboard
     - [ ] Expand to full editor on click
     - [ ] Save via POST API on blur/submit
