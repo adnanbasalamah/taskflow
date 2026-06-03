@@ -34,7 +34,8 @@
     .filter-pill:not(.active):hover { background: #e5e7eb; }
     .checked-item { text-decoration: line-through; color: #9ca3af; }
     .card-content { display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.43; }
-    .dark body, .dark .bg-gray-50 { background-color: #202124 !important; }
+    html.dark { background-color: #202124 !important; }
+    html.dark body { background-color: #202124 !important; }
     .dark .sticky.top-0 { background-color: #202124 !important; border-bottom-color: #3c4043 !important; }
     .dark .task-card { background: #333 !important; border-color: #444 !important; }
     .dark .task-card h3 { color: #fff !important; }
@@ -44,11 +45,12 @@
     .dark input.bg-gray-100 { background: #3c4043; color: #e0e0e0; }
     .dark input.bg-gray-100:focus { background: #3c4043; }
     .dark .text-gray-400 { color: #9aa0a6 !important; }
+    .dark .text-gray-500 { color: #9aa0a6 !important; }
     .dark .text-gray-800 { color: #e8eaed !important; }
   </style>
 </head>
-<body class="bg-gray-50 min-h-screen dark:bg-[#202124]" x-data="dashboardApp()">
-  <div class="sticky top-0 bg-white dark:bg-[#202124] border-b border-gray-100 dark:border-gray-700 z-10">
+<body class="bg-gray-50 min-h-screen" x-data="dashboardApp()">
+  <div class="sticky top-0 bg-white border-b border-gray-100 z-10">
     <div class="flex items-center gap-2 px-4 py-2 max-w-lg md:max-w-5xl mx-auto">
       <h1 class="text-lg font-bold text-gray-800 dark:text-gray-200 shrink-0">TaskFlow</h1>
       <div class="flex-1 flex justify-center">
