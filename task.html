@@ -538,9 +538,45 @@ if ('serviceWorker' in navigator) {
             }
           });
         },
+        htmlToWhatsApp(html) {
+          const div = document.createElement('div');
+          div.innerHTML = html;
+          const checklistLines = [];
+          div.querySelectorAll('li[data-checklist]').forEach(li => {
+            const checked = li.dataset.checked === 'true';
+            const text = li.textContent;
+            checklistLines.push(`- [${checked ? 'x' : ' '}] ${text}`);
+          });
+          div.querySelectorAll('li[data-checklist]').forEach(li => li.remove());
+          div.querySelectorAll('checklist-pos').forEach(el => el.remove());
+          const convertNode = (node) => {
+            let result = '';
+            for (const child of node.childNodes) {
+              if (child.nodeType === Node.TEXT_NODE) {
+                result += child.textContent;
+              } else if (child.nodeType === Node.ELEMENT_NODE) {
+                const tag = child.tagName.toLowerCase();
+                const inner = convertNode(child);
+                switch (tag) {
+                  case 'b': case 'strong': result += `*${inner}*`; break;
+                  case 'i': case 'em': result += `_${inner}_`; break;
+                  case 's': case 'del': case 'strike': result += `~${inner}~`; break;
+                  case 'u': result += inner; break;
+                  case 'br': result += '\n'; break;
+                  case 'li': result += `- ${inner}\n`; break;
+                  case 'p': case 'div': result += inner + '\n'; break;
+                  default: result += inner; break;
+                }
+              }
+            }
+            return result;
+          };
+          const mainText = convertNode(div).trim();
+          return [mainText, ...checklistLines].filter(Boolean).join('\n');
+        },
         copyCurrentTask() {
           this.openMenu = false;
-          const txt = (this.title || 'Task') + '\n\n' + this.stripChecklist(this.buildContent());
+          const txt = (this.title || 'Task') + '\n\n' + this.htmlToWhatsApp(this.buildContent());
           const done = () => this.showToast('Disalin ke clipboard', 'success');
           if (navigator.clipboard) {
             navigator.clipboard.writeText(txt).then(done);
