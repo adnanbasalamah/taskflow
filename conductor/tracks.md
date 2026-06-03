@@ -7,7 +7,3 @@ This file tracks all major tracks for the project. Each track has its own detail
 - [x] **Track: Build core authentication & task CRUD backend**
   *Link: [./tracks/auth_crud_backend_20260603/](./tracks/auth_crud_backend_20260603/)*
 
----
-
-- [x] **Track: UI/UX Google Keep Alignment**
-  *Link: [./tracks/ui_ux_keep_alignment_20260603/](./tracks/ui_ux_keep_alignment_20260603/)*
