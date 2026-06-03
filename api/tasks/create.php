@@ -25,7 +25,7 @@ if ($error) {
 
 $user_id = current_user_id();
 $title = isset($input['title']) ? sanitize_string($input['title']) : '';
-$content = sanitize_string($input['content']);
+$content = sanitize_content($input['content']);
 $state = isset($input['state']) && in_array($input['state'], ['todo', 'doing', 'delegate', 'done'])
     ? $input['state']
     : 'todo';

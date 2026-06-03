@@ -40,7 +40,7 @@ if (isset($input['title'])) {
 }
 
 if (isset($input['content'])) {
-    $content = sanitize_string($input['content']);
+    $content = sanitize_content($input['content']);
     $updates[] = "content = ?";
     $params[] = $content;
     $types .= 's';
