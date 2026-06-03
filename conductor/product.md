@@ -44,6 +44,12 @@ Aplikasi Single Page App (SPA) manajemen task bernama TaskFlow, dengan tampilan 
 - Posisi bottom center, auto-hide 3 detik
 - Hijau sukses, merah error
 
+### 7. Dark Mode
+- Toggle antara light/dark mode via ikon sun/moon di header
+- Dark mode Google Keep style (#202124 bg, #333 cards, white text)
+- Preferensi tersimpan di localStorage
+- Hanya Dashboard & Task Editor (Login/Register tetap light)
+
 ## Design Guidelines
 - **Tampilan** semirip mungkin dengan Google Keep
 - **Layout** card-style (rounded, shadow, color-coded per state)
