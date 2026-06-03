@@ -194,13 +194,6 @@
       <button @click="addContact" class="w-full py-3 bg-indigo-500 text-white font-medium rounded-xl hover:bg-indigo-600 transition text-sm">
         Simpan Kontak
       </button>
-      <div class="relative my-4">
-        <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-gray-200 dark:border-gray-600"></div></div>
-        <div class="relative flex justify-center"><span class="bg-white dark:bg-[#333] px-3 text-xs text-gray-400">atau</span></div>
-      </div>
-      <button @click="importFromPhone" class="w-full py-2.5 border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 font-medium rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition text-sm flex items-center justify-center gap-2">
-        Buku Kontak HP
-      </button>
       <button @click="showContactModal = false" class="w-full py-2 text-xs text-gray-400 hover:text-gray-600">Batal</button>
     </div>
   </div>
@@ -397,30 +390,6 @@ function taskApp() {
       .then(data => {
         if (!data.error) this.contacts.splice(idx, 1);
       });
-    },
-    importFromPhone() {
-      if ('contacts' in navigator && 'select' in navigator.contacts) {
-        const contactPromise = navigator.contacts.select(['name', 'tel'], { multiple: false });
-        const timeoutPromise = new Promise((_, reject) => {
-          setTimeout(() => reject(new Error('timeout')), 5000);
-        });
-        Promise.race([contactPromise, timeoutPromise])
-          .then(contacts => {
-            if (contacts.length > 0) {
-              this.newContact.name = contacts[0].name[0];
-              this.newContact.phone = contacts[0].tel[0];
-            }
-          })
-          .catch(err => {
-            if (err && err.message === 'timeout') {
-              alert('Waktu habis. Kontak HP tidak dapat diakses. Silakan isi manual.');
-            } else {
-              alert('Gagal membuka kontak HP. Silakan isi manual.');
-            }
-          });
-      } else {
-        alert('Web Contact API tidak didukung di browser ini. Silakan isi manual.');
-      }
     },
     execCmd(cmd) {
       document.execCommand(cmd, false, null);
