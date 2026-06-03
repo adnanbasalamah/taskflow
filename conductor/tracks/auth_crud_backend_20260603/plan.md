@@ -31,7 +31,7 @@
     - [x] Create register.html with Tailwind + Alpine.js
     - [x] Wire form to api/register.php via fetch
     - [x] Auto-redirect to login after success
-- [ ] Task: Conductor - User Manual Verification 'Phase 2: Authentication' (Protocol in workflow.md)
+- [~] Task: Conductor - User Manual Verification 'Phase 2: Authentication' (Protocol in workflow.md)
 
 ## Phase 3: Task CRUD
 
