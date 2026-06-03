@@ -1,6 +1,6 @@
 # Plan: Fix Checklist Persistence Bug & Remove Underline Button
 
-## Phase 1: Fix Checklist Persistence Bug
+## Phase 1: Fix Checklist Persistence Bug [checkpoint: e90e18c]
 
 - [x] Task: Write tests for checklist persistence [35c8e2d]
     - [x] Write test: load existing task with checklists, save without changes, verify checklist items are preserved in output
@@ -11,12 +11,12 @@
     - [x] Modify `loadTask()` in `views/task.php` to call a new `insertChecklistMarkers()` function after `parseContent()`
     - [x] Create `insertChecklistMarkers()` function that iterates `checklistItems` and appends `<checklist-pos data-ci="N">` markers into the editor DOM
     - [x] Run tests and confirm they pass (Green phase)
-- [ ] Task: Conductor - User Manual Verification 'Phase 1: Fix Checklist Persistence Bug' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 1: Fix Checklist Persistence Bug' (Protocol in workflow.md)
 
-## Phase 2: Remove Underline Button
+## Phase 2: Remove Underline Button [checkpoint: e90e18c]
 
 - [x] Task: Remove underline button from toolbar [35c8e2d]
     - [x] Remove the underline `<button>` element from the formatting toolbar in `views/task.php`
     - [x] Verify Bold and Italic buttons remain functional
     - [x] Verify existing `<u>` tags in saved content still render correctly
-- [ ] Task: Conductor - User Manual Verification 'Phase 2: Remove Underline Button' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 2: Remove Underline Button' (Protocol in workflow.md)
