@@ -10,7 +10,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     (function() {
-      var theme = localStorage.getItem('theme') || 'light';
+      const theme = localStorage.getItem('theme') || 'light';
       if (theme === 'dark') document.documentElement.classList.add('dark');
     })();
   </script>
@@ -63,7 +63,7 @@
           </button>
         </div>
       </div>
-      <button @click="toggleTheme" class="w-8 h-8 rounded-lg flex items-center justify-center text-gray-500 hover:bg-black/5 transition shrink-0" title="Toggle tema">
+      <button @click="toggleTheme" class="w-10 h-10 rounded-lg flex items-center justify-center text-gray-500 hover:bg-black/5 transition shrink-0" title="Toggle tema">
         <svg x-show="theme === 'light'" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
         </svg>
