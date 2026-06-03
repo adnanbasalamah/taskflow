@@ -22,11 +22,11 @@
     - [x] Login form dengan Alpine.js state (dari login.html)
     - [x] Register form dengan toggle via Alpine.js (dari register.html)
     - [x] Validasi form dan error handling
-- [x] Task: Buat `views/dashboard.php`
+- [x] Task: Buat `views/dashboard.php` (a0a0b7f)
     - [x] Header + search + filter + grid (dari dashboard.html)
     - [x] Pastikan semua Alpine.js data binding berfungsi
     - [x] API fetch URLs disesuaikan (relative to /)
-- [x] Task: Buat `views/task.php`
+- [x] Task: Buat `views/task.php` (a0a0b7f)
     - [x] Full task editor (dari task.html)
     - [x] Rich text formatting, checklist, labels, contacts, state buttons
     - [x] Pastikan all XHR/fetch URLs masih benar
