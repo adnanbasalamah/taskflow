@@ -5,7 +5,7 @@
 |-----------|-------|---------|
 | **Tailwind CSS** | Utility-first CSS framework via CDN | Latest (CDN) |
 | **Alpine.js** | Frontend interactivity & state management via CDN | 3.x (CDN) |
-| **Inter (Google Fonts)** | Typography | - |
+| **Roboto (Google Fonts)** | Typography | - |
 
 ## Backend
 | Technology | Usage |

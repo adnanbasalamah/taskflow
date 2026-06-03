@@ -1,6 +1,6 @@
 # Initial Concept
 
-Aplikasi Single Page App (SPA) manajemen task bernama TaskFlow, dengan tampilan mirip Google Keep. Menggunakan Tailwind CSS + Alpine.js di frontend dan PHP biasa sebagai backend dengan database MySQL. Fitur utama: login/logout username+password, CRUD task dengan 4 state (Todo, Doing, Delegate, Done), text formatting (bold/italic/underline/checklist), delegate dengan kontak via Web Contact API + WhatsApp, dan popup hapus saat state Done.
+Aplikasi Single Page App (SPA) manajemen task bernama TaskFlow, dengan tampilan mirip Google Keep (font Roboto, grid layout, card-style). Menggunakan Tailwind CSS + Alpine.js di frontend dan PHP biasa sebagai backend dengan database MySQL. Fitur utama: login/logout username+password, CRUD task dengan 4 state (Todo, Doing, Delegate, Done), text formatting (bold/italic/underline/checklist), delegate dengan kontak via Web Contact API + WhatsApp, label warna, dan toast notification.
 
 # Product Guide
 
@@ -16,12 +16,13 @@ Aplikasi Single Page App (SPA) manajemen task bernama TaskFlow, dengan tampilan 
 - Password di-hash bcrypt
 
 ### 2. Task CRUD & State Management
-- Buat task baru dengan form inline (seperti Google Keep)
-- Edit task langsung di card
+- Buat task baru via floating + button
+- Edit task di halaman editor khusus (task.html)
 - Hapus task dengan konfirmasi
 - 4 state: Todo, Doing, Delegate, Done
-- Button state ada di dalam card task (referensi dari taskflow_task.html)
+- Button state ada di task editor (task.html)
 - Filter dashboard berdasarkan state
+- Grid layout 2 kolom (desktop) / 1 kolom (mobile)
 
 ### 3. Rich Text Formatting
 - Bold, italic, underline untuk teks biasa
@@ -34,9 +35,14 @@ Aplikasi Single Page App (SPA) manajemen task bernama TaskFlow, dengan tampilan 
 - Tampilkan kontak delegated di bawah teks task
 - Tombol kirim WA langsung ke nomor kontak
 
-### 5. Done → Delete Flow
-- Saat task masuk state Done, muncul popup konfirmasi hapus
-- Jika setuju, task dihapus dari database
+### 5. Labels & 3-Dot Menu
+- Label warna pada task (toggle via editor)
+- 3-dot menu: atur label, salin isi, hapus task
+
+### 6. Toast Notifications
+- Notifikasi untuk simpan, salin, label toggle
+- Posisi bottom center, auto-hide 3 detik
+- Hijau sukses, merah error
 
 ## Design Guidelines
 - **Tampilan** semirip mungkin dengan Google Keep
@@ -52,5 +58,5 @@ Aplikasi Single Page App (SPA) manajemen task bernama TaskFlow, dengan tampilan 
 - CSS framework: Tailwind CSS (CDN)
 - Frontend reactivity: Alpine.js (CDN)
 - Backend: PHP native tanpa framework
-- Database: MySQL dengan 3 tabel (users, tasks, task_contacts)
+- Database: MySQL dengan 5 tabel (users, tasks, task_contacts, labels, task_labels)
 - Arsitektur: SPA dengan PHP API backend
