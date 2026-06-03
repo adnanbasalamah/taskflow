@@ -14,7 +14,7 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-- [ ] **Track: Fix Checklist Persistence Bug & Remove Underline Button**
+- [x] **Track: Fix Checklist Persistence Bug & Remove Underline Button**
   *Link: [./tracks/fix_checklist_underline_20260604/](./tracks/fix_checklist_underline_20260604/)*
 
 
