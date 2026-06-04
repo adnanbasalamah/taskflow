@@ -17,9 +17,4 @@ This file tracks all major tracks for the project. Each track has its own detail
 - [x] **Track: Fix Web Contact API Silent Failure on Android**
   *Link: [./tracks/fix_contact_api_silent_failure_20260604/](./tracks/fix_contact_api_silent_failure_20260604/)*
 
----
-
-- [x] **Track: Contact Auto-Complete from Saved Contacts**
-  *Link: [./tracks/contact_autocomplete_20260604/](./tracks/contact_autocomplete_20260604/)*
-
 
