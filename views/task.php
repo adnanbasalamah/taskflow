@@ -187,8 +187,21 @@
   <div class="bg-white dark:bg-[#333] rounded-t-2xl w-full max-w-lg p-6">
     <h3 class="font-semibold text-gray-800 dark:text-gray-100 mb-4">Tambah Kontak</h3>
     <div class="space-y-3">
-      <input type="text" x-model="newContact.name" placeholder="Nama kontak"
-        class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:border-indigo-400 outline-none text-sm bg-gray-50/50 dark:bg-gray-700/50">
+      <div class="relative">
+        <input type="text" x-model="newContact.name" placeholder="Nama kontak"
+          x-on:input="searchContacts"
+          x-on:keydown.escape="hideContactSearch"
+          class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:border-indigo-400 outline-none text-sm bg-gray-50/50 dark:bg-gray-700/50">
+        <div x-show="contactSearchOpen" x-on:click.away="hideContactSearch"
+          class="absolute z-10 left-0 right-0 mt-1 bg-white dark:bg-[#333] border border-gray-200 dark:border-gray-600 rounded-xl shadow-lg max-h-48 overflow-y-auto">
+          <template x-for="item in contactSearchResults" :key="item.id">
+            <button @click="selectContact(item)" class="w-full px-4 py-2.5 text-left text-sm hover:bg-gray-50 dark:hover:bg-gray-600 border-b border-gray-100 dark:border-gray-600 last:border-b-0 flex items-center gap-2">
+              <span class="font-medium text-gray-700 dark:text-gray-200" x-text="item.name"></span>
+              <span class="text-gray-400 text-xs" x-text="item.phone"></span>
+            </button>
+          </template>
+        </div>
+      </div>
       <input type="text" x-model="newContact.phone" placeholder="Nomor HP (contoh: 628123456789)"
         class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:border-indigo-400 outline-none text-sm bg-gray-50/50 dark:bg-gray-700/50">
       <button @click="addContact" class="w-full py-3 bg-indigo-500 text-white font-medium rounded-xl hover:bg-indigo-600 transition text-sm">
@@ -226,6 +239,9 @@ function taskApp() {
     toast: { show: false, message: '', type: 'success' },
     newLabelName: '',
     newLabelColor: '#6366f1',
+    contactSearchResults: [],
+    contactSearchOpen: false,
+    _contactSearchTimer: null,
     _nextIdx: 0,
     states: [
       { label: 'Todo', value: 'todo' },
@@ -364,6 +380,10 @@ function taskApp() {
     },
     addContact() {
       if (!this.newContact.name || !this.newContact.phone) return;
+      if (this.contacts.some(c => c.phone === this.newContact.phone)) {
+        this.showToast('No HP sudah ada', 'error');
+        return;
+      }
       fetch('api/tasks/contacts.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -375,6 +395,8 @@ function taskApp() {
           this.contacts.push({ id: data.data.id, name: this.newContact.name, phone: this.newContact.phone });
           this.newContact = { name: '', phone: '' };
           this.showContactModal = false;
+        } else {
+          this.showToast(data.message || 'Gagal menyimpan kontak', 'error');
         }
       });
     },
@@ -390,6 +412,27 @@ function taskApp() {
       .then(data => {
         if (!data.error) this.contacts.splice(idx, 1);
       });
+    },
+    searchContacts() {
+      clearTimeout(this._contactSearchTimer);
+      const q = this.newContact.name.trim();
+      if (!q) { this.contactSearchOpen = false; return; }
+      this._contactSearchTimer = setTimeout(() => {
+        fetch('api/tasks/contacts.php?search=' + encodeURIComponent(q))
+          .then(res => res.json())
+          .then(data => {
+            this.contactSearchResults = data.data || [];
+            this.contactSearchOpen = this.contactSearchResults.length > 0;
+          });
+      }, 300);
+    },
+    selectContact(item) {
+      this.newContact.name = item.name;
+      this.newContact.phone = item.phone;
+      this.contactSearchOpen = false;
+    },
+    hideContactSearch() {
+      this.contactSearchOpen = false;
     },
     execCmd(cmd) {
       document.execCommand(cmd, false, null);
