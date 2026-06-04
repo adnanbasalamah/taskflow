@@ -1,0 +1,8 @@
+{
+  "track_id": "autosave_task_editor_20260604",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-06-04T00:00:00Z",
+  "updated_at": "2026-06-04T00:00:00Z",
+  "description": "Autosave task editor with debounce and save status indicator"
+}
