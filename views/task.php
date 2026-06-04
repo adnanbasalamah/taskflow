@@ -380,8 +380,9 @@ function taskApp() {
     },
     addContact() {
       if (!this.newContact.name || !this.newContact.phone) return;
-      if (this.contacts.some(c => c.phone === this.newContact.phone)) {
-        this.showToast('No HP sudah ada', 'error');
+      const dup = this.contacts.find(c => c.phone === this.newContact.phone);
+      if (dup && dup.name !== this.newContact.name) {
+        this.showToast('tidak bisa disimpan, kontak sdh ada', 'error');
         return;
       }
       fetch('api/tasks/contacts.php', {

@@ -27,10 +27,11 @@ if ($method === 'POST') {
     $stmt->execute();
     if ($stmt->get_result()->num_rows === 0) error_response('Task not found', 404);
 
-    $stmt = $db->prepare("SELECT tc.id FROM task_contacts tc JOIN tasks t ON t.id = tc.task_id WHERE t.user_id = ? AND tc.phone = ?");
+    $stmt = $db->prepare("SELECT tc.id, tc.name FROM task_contacts tc JOIN tasks t ON t.id = tc.task_id WHERE t.user_id = ? AND tc.phone = ?");
     $stmt->bind_param('is', $user_id, $phone);
     $stmt->execute();
-    if ($stmt->get_result()->num_rows > 0) error_response('No HP sudah ada');
+    $existing = $stmt->get_result()->fetch_assoc();
+    if ($existing && $existing['name'] !== $name) error_response('tidak bisa disimpan, kontak sdh ada');
 
     $stmt = $db->prepare("INSERT INTO task_contacts (task_id, name, phone) VALUES (?, ?, ?)");
     $stmt->bind_param('iss', $task_id, $name, $phone);
