@@ -1,6 +1,6 @@
 # Plan: Click Contact to Open WhatsApp in Task Editor
 
-## Phase 1: Contact Avatar & WhatsApp Integration
+## Phase 1: Contact Avatar & WhatsApp Integration [checkpoint: 399b850]
 
 - [x] Task: Add avatar circle display for contacts in task editor [db20ea3]
     - [x] Add colored avatar circle with first initial next to contact name
