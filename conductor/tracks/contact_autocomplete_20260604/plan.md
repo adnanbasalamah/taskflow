@@ -14,7 +14,7 @@
     - [x] Test duplicate rejection
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Backend API' [5d408bc]
 
-## Phase 2: Frontend — Autocomplete & Validation
+## Phase 2: Frontend — Autocomplete & Validation [checkpoint: 4009078]
 
 - [x] Task: Add autocomplete dropdown to contact modal [6df559a]
     - [x] Add Alpine.js state for search results, debounce timer, dropdown visibility
@@ -27,4 +27,4 @@
     - [x] If duplicate, show toast "No HP sudah ada" and cancel save
     - [x] Refined: allow save if same phone + same name; reject only if name differs [d666858]
     - [x] Test duplicate rejection flow
-- [ ] Task: Conductor - User Manual Verification 'Phase 2: Frontend' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 2: Frontend' [4009078]
