@@ -2,15 +2,15 @@
 
 ## Phase 1: Backend — Search API & Duplicate Check
 
-- [ ] Task: Create search contacts API endpoint
-    - [ ] Add `search` parameter handling to `api/tasks/contacts.php` (GET)
-    - [ ] Query `task_contacts` with LIKE on `name` WHERE `user_id` = current user
-    - [ ] Limit results to 10, return `{id, name, phone}` array
-    - [ ] Test search returns correct results
-- [ ] Task: Add duplicate phone validation to save contact endpoint
-    - [ ] Before INSERT in `api/tasks/contacts.php` (POST), check if phone already exists for this user
-    - [ ] If duplicate, return error response with message "No HP sudah ada"
-    - [ ] Test duplicate rejection
+- [x] Task: Create search contacts API endpoint [6036b92]
+    - [x] Add `search` parameter handling to `api/tasks/contacts.php` (GET)
+    - [x] Query `task_contacts` with LIKE on `name` WHERE `user_id` = current user
+    - [x] Limit results to 10, return `{id, name, phone}` array
+    - [x] Test search returns correct results
+- [x] Task: Add duplicate phone validation to save contact endpoint [6036b92]
+    - [x] Before INSERT in `api/tasks/contacts.php` (POST), check if phone already exists for this user
+    - [x] If duplicate, return error response with message "No HP sudah ada"
+    - [x] Test duplicate rejection
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Backend API' (Protocol in workflow.md)
 
 ## Phase 2: Frontend — Autocomplete & Validation
