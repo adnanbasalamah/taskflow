@@ -1,6 +1,6 @@
 # Plan: Autosave Task Editor
 
-## Phase 1: Autosave Engine & UI Indicator
+## Phase 1: Autosave Engine & UI Indicator [checkpoint: c64b602]
 
 - [x] Task: Add debounced watchers for title, content, state, and checklistItems [6e35df3]
     - [x] Add $watch on title, state, and checklistItems to trigger autosave
