@@ -9,6 +9,11 @@
     </button>
     <h1 class="text-sm font-semibold text-gray-700" x-text="taskId ? 'Edit Task' : 'Buat Task'"></h1>
   </div>
+  <div class="flex items-center gap-2">
+    <span x-show="saveStatus === 'saving'" class="text-xs text-gray-400">Menyimpan...</span>
+    <span x-show="saveStatus === 'saved'" class="text-xs text-green-600 font-medium">Tersimpan</span>
+    <span x-show="saveStatus === 'error'" class="text-xs text-red-500 font-medium">Gagal</span>
+  </div>
   <button @click="toggleTheme" class="w-10 h-10 rounded-lg flex items-center justify-center text-gray-500 hover:bg-black/5 dark:hover:bg-white/10 transition shrink-0" title="Toggle tema">
     <svg x-show="theme === 'light'" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
@@ -38,16 +43,16 @@
       <div class="space-y-2 mb-5">
         <div contenteditable="true" id="contentEditor"
           class="text-sm text-[#3c4043] dark:text-[#e0e0e0] min-h-[80px] leading-[1.43]"
-          @input="updateContent"></div>
+          @input="onContentChange"></div>
 
         <template x-for="(item, idx) in checklistItems" :key="idx">
           <label class="flex items-start gap-2 cursor-pointer group">
-            <input type="checkbox" x-model="item.checked" class="mt-0.5 accent-indigo-500 shrink-0">
+            <input type="checkbox" x-model="item.checked" @change="checklistChanged" class="mt-0.5 accent-indigo-500 shrink-0">
             <span x-show="!item.editing" @dblclick="item.editing = true"
               class="text-sm flex-1" :class="{'text-gray-400 checked-item': item.checked, 'text-gray-600': !item.checked}"
               x-text="item.text"></span>
             <input x-show="item.editing" x-model="item.text"
-              @blur="item.editing = false" @keydown.enter="item.editing = false"
+              @blur="item.editing = false; checklistChanged()" @keydown.enter="item.editing = false; checklistChanged()"
               class="text-sm bg-transparent border-b border-gray-300 outline-none flex-1">
             <button @click="removeChecklist(idx)" class="opacity-0 group-hover:opacity-100 transition-opacity text-gray-400 hover:text-red-500 p-0.5 shrink-0">
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
@@ -101,7 +106,7 @@
         </template>
       </div>
 
-      <div class="flex items-center justify-end mb-3">
+      <div class="flex items-center justify-end">
         <div class="relative" @click.outside="openMenu = false">
           <button @click.stop="openMenu = !openMenu" class="text-gray-400 hover:text-gray-600 p-1 rounded-lg hover:bg-black/5 transition">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -126,10 +131,6 @@
         </div>
       </div>
 
-      <button @click="saveTask"
-        class="w-full py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-xl hover:from-indigo-600 hover:to-purple-700 transition shadow-md shadow-indigo-200/50 text-sm">
-        Simpan Task
-      </button>
     </div>
   </div>
 </div>
@@ -243,6 +244,9 @@ function taskApp() {
     contactSearchOpen: false,
     _contactSearchTimer: null,
     _nextIdx: 0,
+    saveStatus: 'idle',
+    _saveTimer: null,
+    _autosaveTimer: null,
     states: [
       { label: 'Todo', value: 'todo' },
       { label: 'Doing', value: 'doing' },
@@ -270,6 +274,9 @@ function taskApp() {
             }
           });
       }
+      this.$watch('title', () => this._triggerAutosave());
+      this.$watch('state', () => this._triggerAutosave());
+      this.$watch('checklistItems', () => this._triggerAutosave());
     },
     loadLabels() {
       fetch('api/labels.php')
@@ -301,6 +308,9 @@ function taskApp() {
             this.taskLabels.push({ id: label.id, name: label.name, color: label.color });
             this.showToast('Label ditambahkan', 'success');
           }
+          this.saveStatus = 'saved';
+          clearTimeout(this._saveTimer);
+          this._saveTimer = setTimeout(() => { this.saveStatus = 'idle'; }, 3000);
         }
       });
     },
@@ -400,6 +410,9 @@ function taskApp() {
           this.contacts.push({ id: data.data.id, name: this.newContact.name, phone: this.newContact.phone });
           this.newContact = { name: '', phone: '' };
           this.showContactModal = false;
+          this.saveStatus = 'saved';
+          clearTimeout(this._saveTimer);
+          this._saveTimer = setTimeout(() => { this.saveStatus = 'idle'; }, 3000);
         } else {
           this.showToast(data.error || 'Gagal menyimpan kontak', 'error');
         }
@@ -416,7 +429,12 @@ function taskApp() {
       })
       .then(res => res.json())
       .then(data => {
-        if (!data.error) this.contacts.splice(idx, 1);
+        if (!data.error) {
+          this.contacts.splice(idx, 1);
+          this.saveStatus = 'saved';
+          clearTimeout(this._saveTimer);
+          this._saveTimer = setTimeout(() => { this.saveStatus = 'idle'; }, 3000);
+        }
       });
     },
     searchContacts() {
@@ -458,6 +476,7 @@ function taskApp() {
           range.insertNode(marker);
           sel.removeAllRanges();
           this.checklistItems.push({ text, checked: false, editing: false, _idx: idx });
+          this._triggerAutosave();
           return;
         }
       }
@@ -466,12 +485,79 @@ function taskApp() {
       const marker = document.createElement('checklist-pos');
       marker.setAttribute('data-ci', idx);
       editor.appendChild(marker);
+      this._triggerAutosave();
     },
     removeChecklist(idx) {
       this.checklistItems.splice(idx, 1);
+      this._triggerAutosave();
+    },
+    checklistChanged() {
+      this._triggerAutosave();
+    },
+    onContentChange() {
+      this.updateContent();
+      this._triggerAutosave();
     },
     updateContent() {
       // content gets saved from innerHTML
+    },
+    _triggerAutosave() {
+      this.saveStatus = 'saving';
+      clearTimeout(this._autosaveTimer);
+      this._autosaveTimer = setTimeout(() => this._doAutosave(), 1500);
+    },
+    _doAutosave() {
+      if (!this.taskId) {
+        this._createNewTask();
+        return;
+      }
+      this._performSave();
+    },
+    _performSave() {
+      const content = this.buildContent();
+      fetch('api/tasks/update.php', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: parseInt(this.taskId), title: this.title, content, state: this.state })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (!data.error) {
+          this.saveStatus = 'saved';
+        } else {
+          this.saveStatus = 'error';
+        }
+        clearTimeout(this._saveTimer);
+        this._saveTimer = setTimeout(() => { if (this.saveStatus !== 'saving') this.saveStatus = 'idle'; }, 3000);
+      })
+      .catch(() => {
+        this.saveStatus = 'error';
+        clearTimeout(this._saveTimer);
+        this._saveTimer = setTimeout(() => { if (this.saveStatus !== 'saving') this.saveStatus = 'idle'; }, 3000);
+      });
+    },
+    _createNewTask() {
+      const content = this.buildContent();
+      fetch('api/tasks/create.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title: this.title, content, state: this.state })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (!data.error) {
+          window.location.href = '/?page=task&id=' + data.data.id;
+        } else {
+          this.saveStatus = 'error';
+          clearTimeout(this._saveTimer);
+          this._saveTimer = setTimeout(() => { if (this.saveStatus !== 'saving') this.saveStatus = 'idle'; }, 3000);
+        }
+      })
+      .catch(() => {
+        this.saveStatus = 'error';
+        clearTimeout(this._saveTimer);
+        this._saveTimer = setTimeout(() => { this.saveStatus = 'idle'; }, 3000);
+      });
     },
     changeState(newState) {
       this.state = newState;
