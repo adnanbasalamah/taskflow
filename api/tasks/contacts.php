@@ -27,6 +27,11 @@ if ($method === 'POST') {
     $stmt->execute();
     if ($stmt->get_result()->num_rows === 0) error_response('Task not found', 404);
 
+    $stmt = $db->prepare("SELECT tc.id FROM task_contacts tc JOIN tasks t ON t.id = tc.task_id WHERE t.user_id = ? AND tc.phone = ?");
+    $stmt->bind_param('is', $user_id, $phone);
+    $stmt->execute();
+    if ($stmt->get_result()->num_rows > 0) error_response('No HP sudah ada');
+
     $stmt = $db->prepare("INSERT INTO task_contacts (task_id, name, phone) VALUES (?, ?, ?)");
     $stmt->bind_param('iss', $task_id, $name, $phone);
     $stmt->execute();
@@ -38,6 +43,25 @@ elseif ($method === 'GET' && isset($_GET['task_id'])) {
 
     $stmt = $db->prepare("SELECT id, name, phone FROM task_contacts WHERE task_id = ?");
     $stmt->bind_param('i', $task_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $contacts = [];
+    while ($row = $result->fetch_assoc()) $contacts[] = $row;
+    success_response($contacts);
+}
+elseif ($method === 'GET' && isset($_GET['search'])) {
+    $keyword = sanitize_string($_GET['search']);
+    $like = '%' . $keyword . '%';
+
+    $stmt = $db->prepare("
+        SELECT tc.id, tc.name, tc.phone
+        FROM task_contacts tc
+        JOIN tasks t ON t.id = tc.task_id
+        WHERE t.user_id = ? AND tc.name LIKE ?
+        LIMIT 10
+    ");
+    $stmt->bind_param('is', $user_id, $like);
     $stmt->execute();
     $result = $stmt->get_result();
 
