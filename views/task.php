@@ -380,6 +380,10 @@ function taskApp() {
     },
     addContact() {
       if (!this.newContact.name || !this.newContact.phone) return;
+      if (!this.taskId) {
+        this.showToast('Simpan task terlebih dahulu sebelum menambah kontak', 'error');
+        return;
+      }
       const dup = this.contacts.find(c => c.phone === this.newContact.phone);
       if (dup && dup.name !== this.newContact.name) {
         this.showToast('tidak bisa disimpan, kontak sdh ada', 'error');
