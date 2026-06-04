@@ -10,8 +10,9 @@
 - [x] Task: Add duplicate phone validation to save contact endpoint [6036b92]
     - [x] Before INSERT in `api/tasks/contacts.php` (POST), check if phone already exists for this user
     - [x] If duplicate, return error response with message "No HP sudah ada"
+    - [x] Refined: allow save if same phone + same name; reject only if name differs [d666858]
     - [x] Test duplicate rejection
-- [ ] Task: Conductor - User Manual Verification 'Phase 1: Backend API' (Protocol in workflow.md)
+- [~] Task: Conductor - User Manual Verification 'Phase 1: Backend API' (Protocol in workflow.md)
 
 ## Phase 2: Frontend — Autocomplete & Validation
 
@@ -24,5 +25,6 @@
 - [x] Task: Add duplicate phone validation before save [6df559a]
     - [x] Before calling POST API, check if phone already exists in fetched contacts list
     - [x] If duplicate, show toast "No HP sudah ada" and cancel save
+    - [x] Refined: allow save if same phone + same name; reject only if name differs [d666858]
     - [x] Test duplicate rejection flow
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: Frontend' (Protocol in workflow.md)
