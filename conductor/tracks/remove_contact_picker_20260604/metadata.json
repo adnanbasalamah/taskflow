@@ -1,8 +1,0 @@
-{
-  "track_id": "remove_contact_picker_20260604",
-  "type": "chore",
-  "status": "new",
-  "created_at": "2026-06-04T00:00:00Z",
-  "updated_at": "2026-06-04T00:00:00Z",
-  "description": "Remove Web Contact API contact picker, keep manual contact input only"
-}

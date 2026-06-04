@@ -39,4 +39,9 @@ if (!file_exists($viewFile)) {
     $pageTitle = 'TaskFlow — 404';
 }
 
+header('Content-Type: text/html; charset=utf-8');
+header('Cache-Control: no-cache, no-store, must-revalidate');
+header('Pragma: no-cache');
+header('Expires: Thu, 19 Nov 1981 08:52:00 GMT');
+
 require __DIR__ . '/views/layout.php';
