@@ -11,4 +11,4 @@
     - [x] Add click handler on avatar circle to open wa.me/{phone} in new tab
     - [x] Add click handler on contact name to open wa.me/{phone} in new tab
     - [x] Ensure links open with target="_blank" or window.open
-- [ ] Task: Conductor - User Manual Verification 'Phase 1: Contact Avatar & WhatsApp Integration' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 1: Contact Avatar & WhatsApp Integration' (Protocol in workflow.md)
