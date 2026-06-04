@@ -15,14 +15,14 @@
 
 ## Phase 2: Frontend — Autocomplete & Validation
 
-- [ ] Task: Add autocomplete dropdown to contact modal
-    - [ ] Add Alpine.js state for search results, debounce timer, dropdown visibility
-    - [ ] Add `x-on:input` with debounce (300ms) to fetch search API
-    - [ ] Render dropdown below input nama with clickable items
-    - [ ] Click item → fill name + phone inputs, hide dropdown
-    - [ ] Hide dropdown on click outside / ESC / empty input
-- [ ] Task: Add duplicate phone validation before save
-    - [ ] Before calling POST API, check if phone already exists in fetched contacts list
-    - [ ] If duplicate, show toast "No HP sudah ada" and cancel save
-    - [ ] Test duplicate rejection flow
+- [x] Task: Add autocomplete dropdown to contact modal [6df559a]
+    - [x] Add Alpine.js state for search results, debounce timer, dropdown visibility
+    - [x] Add `x-on:input` with debounce (300ms) to fetch search API
+    - [x] Render dropdown below input nama with clickable items
+    - [x] Click item → fill name + phone inputs, hide dropdown
+    - [x] Hide dropdown on click outside / ESC / empty input
+- [x] Task: Add duplicate phone validation before save [6df559a]
+    - [x] Before calling POST API, check if phone already exists in fetched contacts list
+    - [x] If duplicate, show toast "No HP sudah ada" and cancel save
+    - [x] Test duplicate rejection flow
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: Frontend' (Protocol in workflow.md)
