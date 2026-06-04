@@ -32,7 +32,7 @@ Aplikasi Single Page App (SPA) manajemen task bernama TaskFlow, dengan tampilan 
 - Copy output terformat WhatsApp (*bold*, _italic_, ~strikethrough~, - [x] checklist)
 
 ### 4. Delegate & WhatsApp
-- Tambah kontak via Web Contact API (nama + no HP)
+- Tambah kontak manual (nama + no HP)
 - Tampilkan kontak delegated di bawah teks task
 - Tombol kirim WA langsung ke nomor kontak
 
