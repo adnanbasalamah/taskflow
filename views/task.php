@@ -91,12 +91,12 @@
         </template>
         <template x-for="(c, idx) in contacts" :key="c.id">
             <div class="flex items-center gap-3 bg-white/60 dark:bg-gray-700/60 rounded-xl p-3 border border-gray-100 dark:border-gray-600 mb-2">
-            <div class="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 text-xs font-semibold" x-text="c.name[0]"></div>
-            <div class="flex-1">
-              <p class="text-sm font-medium text-gray-700 dark:text-gray-200" x-text="c.name"></p>
+            <div @click="openWhatsApp(c.phone)" class="w-11 h-11 rounded-full flex items-center justify-center text-xs font-semibold cursor-pointer hover:opacity-80 transition shrink-0" :class="getContactAvatarClass(c.name)" x-text="c.name[0].toUpperCase()"></div>
+            <div class="flex-1 min-w-0">
+              <p @click="openWhatsApp(c.phone)" class="text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 cursor-pointer transition truncate" x-text="c.name"></p>
               <p class="text-xs text-gray-400" x-text="c.phone"></p>
             </div>
-            <button @click="removeContact(idx)" class="text-xs text-red-400 hover:text-red-600">Hapus</button>
+            <button @click="removeContact(idx)" class="text-xs text-red-400 hover:text-red-600 shrink-0">Hapus</button>
           </div>
         </template>
       </div>
@@ -603,6 +603,30 @@ function taskApp() {
       this.theme = this.theme === 'light' ? 'dark' : 'light';
       localStorage.setItem('theme', this.theme);
       document.documentElement.classList.toggle('dark', this.theme === 'dark');
+    },
+    getContactAvatarClass(name) {
+      const colors = [
+        { bg: 'bg-indigo-100', text: 'text-indigo-600' },
+        { bg: 'bg-red-100', text: 'text-red-600' },
+        { bg: 'bg-orange-100', text: 'text-orange-600' },
+        { bg: 'bg-yellow-100', text: 'text-yellow-600' },
+        { bg: 'bg-green-100', text: 'text-green-600' },
+        { bg: 'bg-cyan-100', text: 'text-cyan-600' },
+        { bg: 'bg-purple-100', text: 'text-purple-600' },
+        { bg: 'bg-pink-100', text: 'text-pink-600' }
+      ];
+      let hash = 0;
+      for (let i = 0; i < name.length; i++) {
+        hash = name.charCodeAt(i) + ((hash << 5) - hash);
+      }
+      const idx = Math.abs(hash) % colors.length;
+      return colors[idx].bg + ' ' + colors[idx].text;
+    },
+    openWhatsApp(phone) {
+      const cleaned = phone.replace(/[^0-9]/g, '');
+      if (cleaned) {
+        window.open('https://wa.me/' + cleaned, '_blank');
+      }
     }
   }
 }
