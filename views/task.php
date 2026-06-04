@@ -397,9 +397,10 @@ function taskApp() {
           this.newContact = { name: '', phone: '' };
           this.showContactModal = false;
         } else {
-          this.showToast(data.message || 'Gagal menyimpan kontak', 'error');
+          this.showToast(data.error || 'Gagal menyimpan kontak', 'error');
         }
-      });
+      })
+      .catch(() => this.showToast('Gagal menyimpan kontak', 'error'));
     },
     removeContact(idx) {
       const c = this.contacts[idx];
