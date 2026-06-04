@@ -16,4 +16,4 @@
     - [x] Replace button HTML with inline status indicator
     - [x] Show "Menyimpan..." (gray text) during save, "Tersimpan" (green) on success, "Gagal" (red) on error
     - [x] Auto-reset to 'idle' after 3 detik
-- [ ] Task: Conductor - User Manual Verification 'Phase 1: Autosave Engine & UI Indicator' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 1: Autosave Engine & UI Indicator' (Protocol in workflow.md)
