@@ -21,6 +21,7 @@ Aplikasi Single Page App (SPA) manajemen task bernama TaskFlow, dengan tampilan 
 - Hapus task dengan konfirmasi
 - 4 state: Todo, Doing, Delegate, Done
 - Button state ada di task editor (`?page=task&id=N`)
+- Autosave: perubahan (judul, konten, state, checklist, kontak, label) tersimpan otomatis 1.5 detik setelah user berhenti
 - Filter dashboard berdasarkan state
 - Grid layout 2 kolom (desktop) / 1 kolom (mobile)
 
