@@ -1,6 +1,6 @@
 # Plan: Contact Auto-Complete from Saved Contacts
 
-## Phase 1: Backend — Search API & Duplicate Check
+## Phase 1: Backend — Search API & Duplicate Check [checkpoint: 5d408bc]
 
 - [x] Task: Create search contacts API endpoint [6036b92]
     - [x] Add `search` parameter handling to `api/tasks/contacts.php` (GET)
@@ -12,7 +12,7 @@
     - [x] If duplicate, return error response with message "No HP sudah ada"
     - [x] Refined: allow save if same phone + same name; reject only if name differs [d666858]
     - [x] Test duplicate rejection
-- [~] Task: Conductor - User Manual Verification 'Phase 1: Backend API' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 1: Backend API' [5d408bc]
 
 ## Phase 2: Frontend — Autocomplete & Validation
 
